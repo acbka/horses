@@ -1,16 +1,31 @@
+import { assertCompletionStatement } from "@babel/types";
 import { createSlice } from "@reduxjs/toolkit";
 import { getHorses } from "../requests/getHorses";
+import { horseIdInterface } from "../../common/horseInterfaces";
 
-const initialState = {
+type initialStateType = {
+  isLoading: boolean;
+  isSuccess: boolean;
+  isError: boolean;
+  horses: horseIdInterface[];
+  compareHorses: horseIdInterface[];
+};
+
+const initialState: initialStateType = {
   isLoading: false,
   isSuccess: false,
   isError: false,
   horses: [],
+  compareHorses: [],
 };
 const horsesSlice = createSlice({
   name: "horses",
   initialState,
-  reducers: {},
+  reducers: {
+    addHorseToCompare: (state, { payload }) => {
+      state.compareHorses.push(payload as horseIdInterface);
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getHorses.pending, (state) => {
       state.isLoading = true;
@@ -31,4 +46,5 @@ const horsesSlice = createSlice({
   },
 });
 
+export const { addHorseToCompare } = horsesSlice.actions;
 export default horsesSlice.reducer;

@@ -3,11 +3,17 @@ import styled from "@emotion/styled/macro";
 import { useAppDispatch } from "../api/store";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import { selectHorses } from "../api/selectors";
+import {
+  selectHorses,
+  selectIsHorsesLoading,
+  selectCompareHorses,
+} from "../api/selectors";
+import { addHorseToCompare } from "../api/slices/horsesSlice";
 import { getHorses } from "../api/requests/getHorses";
 import Horse from "./Horse";
 import Button from "../components/Button";
 import { horseIdInterface } from "../common/horseInterfaces";
+import Spinner from "../components/Spinner";
 import {
   Wrapper,
   List,
@@ -21,13 +27,14 @@ const AddButton = styled(Button)`
 `;
 
 const HomePage = () => {
-  const horsesPerPage = 10;
+  const horsesPerPage = 5;
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(1);
   const [horsesOnPage, setHorsesOnPage] = useState<horseIdInterface[]>();
   const dispatch = useAppDispatch();
   const horses = useSelector(selectHorses);
-  const isLoading = useSelector(selectHorses);
+  const compareHorses = useSelector(selectCompareHorses);
+  const isHorsesLoading = useSelector(selectIsHorsesLoading);
   const history = useHistory();
 
   useEffect(() => {
@@ -44,18 +51,22 @@ const HomePage = () => {
     setHorsesOnPage(horsesArray);
   }, [horses, page]);
 
+  const createComparableArray = (value: horseIdInterface) => {
+    dispatch(addHorseToCompare(value));
+  };
+
   const horsesList = horsesOnPage?.map((item, index) => (
-    <Horse key={index} horse={item} />
+    <Horse key={index} horse={item} selectHorse={createComparableArray} />
   ));
 
   const addNewHorse = () => {
     history.push("/AddHorse");
   };
-  
+
   return (
     <Wrapper>
       <Section>
-        <List>{horsesList}</List>
+        {isHorsesLoading ? <Spinner /> : <List>{horsesList}</List>}
         <ButtonsSection>
           <ButtonsGroup>
             <Button

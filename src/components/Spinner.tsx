@@ -2,6 +2,7 @@ import styled from "@emotion/styled/macro";
 
 const Roller = styled.div`
   display: inline-block;
+  margin-top: 40px;
   position: relative;
   width: 80px;
   height: 80px;
@@ -19,56 +20,56 @@ const Roller = styled.div`
     background: var(--color-main);
     margin: -4px 0 0 -4px;
   }
-  & :nth-child(1) {
+  & :nth-of-type(1) {
     animation-delay: -0.036s;
     & :after {
       top: 63px;
       left: 63px;
     }
   }
-  & :nth-child(2) {
+  & :nth-of-type(2) {
     animation-delay: -0.072s;
     & :after {
       top: 68px;
       left: 56px;
     }
   }
-  & :nth-child(3) {
+  & :nth-of-type(3) {
     animation-delay: -0.108s;
     & :after {
       top: 71px;
       left: 48px;
     }
   }
-  & :nth-child(4) {
+  & :nth-of-type(4) {
     animation-delay: -0.144s;
     & :after {
       top: 72px;
       left: 40px;
     }
   }
-  & :nth-child(5) {
+  & :nth-of-type(5) {
     animation-delay: -0.18s;
     & :after {
       top: 71px;
       left: 32px;
     }
   }
-  & :nth-child(6) {
+  & :nth-of-type(6) {
     animation-delay: -0.216s;
     & :after {
       top: 68px;
       left: 24px;
     }
   }
-  & :nth-child(7) {
+  & :nth-of-type(7) {
     animation-delay: -0.252s;
     & :after {
       top: 63px;
       left: 17px;
     }
   }
-  & :nth-child(8) {
+  & :nth-of-type(8) {
     animation-delay: -0.288s;
     & :after {
       top: 56px;
@@ -100,4 +101,4 @@ const Spinner = () => {
   );
 };
 
-export default Spinner
+export default Spinner;
