@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import styled from "@emotion/styled/macro";
 import { useParams, useHistory } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { selectHorse } from "../api/selectors";
@@ -6,19 +7,22 @@ import { getHorseById } from "../api/requests/getHorseById";
 import { updateHorse } from "../api/requests/updateHorse";
 import { horseIdInterface, horseInterface } from "../common/horseInterfaces";
 import Button from "../components/Button";
+import InputForm from "../components/InputForm";
 import {
   Wrapper,
   Section,
   List,
-  Item,
   ButtonsSection,
   ButtonsGroup,
 } from "../common/styles";
-import InputForm from "../components/InputForm";
 
 type Params = {
   id: string;
 };
+
+const Item = styled.div`
+  padding: 10px 0;
+`;
 
 const HorseInfo = () => {
   const dispatch = useDispatch();

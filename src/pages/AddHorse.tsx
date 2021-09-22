@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import styled from "@emotion/styled/macro";
 import { useHistory } from "react-router";
 import { useAppDispatch } from "../api/store";
 import { addHorse } from "../api/requests/addHorse";

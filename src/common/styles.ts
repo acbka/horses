@@ -43,11 +43,7 @@ export const ButtonsGroup = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 20px 0;
-  & :first-child {
+  & :first-of-type {
     margin-right: 10px;
   }
-`;
-
-export const Item = styled.div`
-  padding: 10px 0;
 `;

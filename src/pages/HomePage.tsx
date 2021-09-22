@@ -7,6 +7,7 @@ import { selectHorses } from "../api/selectors";
 import { getHorses } from "../api/requests/getHorses";
 import Horse from "./Horse";
 import Button from "../components/Button";
+import { horseIdInterface } from "../common/horseInterfaces";
 import {
   Wrapper,
   List,
@@ -14,7 +15,6 @@ import {
   Section,
   ButtonsSection,
 } from "../common/styles";
-import { horseIdInterface } from "../common/horseInterfaces";
 
 const AddButton = styled(Button)`
   height: 40px;
@@ -27,6 +27,7 @@ const HomePage = () => {
   const [horsesOnPage, setHorsesOnPage] = useState<horseIdInterface[]>();
   const dispatch = useAppDispatch();
   const horses = useSelector(selectHorses);
+  const isLoading = useSelector(selectHorses);
   const history = useHistory();
 
   useEffect(() => {
@@ -50,7 +51,7 @@ const HomePage = () => {
   const addNewHorse = () => {
     history.push("/AddHorse");
   };
-
+  
   return (
     <Wrapper>
       <Section>
