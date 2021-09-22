@@ -1,4 +1,3 @@
-import { assertCompletionStatement } from "@babel/types";
 import { createSlice } from "@reduxjs/toolkit";
 import { getHorses } from "../requests/getHorses";
 import { horseIdInterface } from "../../common/horseInterfaces";
@@ -25,6 +24,12 @@ const horsesSlice = createSlice({
     addHorseToCompare: (state, { payload }) => {
       state.compareHorses.push(payload as horseIdInterface);
     },
+    removeHorseFromCompare: (state, { payload }) => {
+      const index = state.compareHorses.findIndex(
+        (horse) => horse.id === payload
+      );
+      state.compareHorses.splice(index, 1);
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getHorses.pending, (state) => {
@@ -46,5 +51,6 @@ const horsesSlice = createSlice({
   },
 });
 
-export const { addHorseToCompare } = horsesSlice.actions;
+export const { addHorseToCompare, removeHorseFromCompare } =
+  horsesSlice.actions;
 export default horsesSlice.reducer;

@@ -3,7 +3,6 @@ import styled from "@emotion/styled/macro";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectCompareHorses } from "../api/selectors";
-import { addHorseToCompare } from "../api/slices/horsesSlice";
 import Button from "../components/Button";
 
 type HorsePropsType = {
@@ -23,11 +22,15 @@ const StyledButton = styled(Button)`
 `;
 
 const Horse = ({ horse, selectHorse }: HorsePropsType) => {
-   const compareHorses = useSelector(selectCompareHorses);
+  const compareHorses = useSelector(selectCompareHorses);
   return (
     <Item>
       <Link to={`/horse/${horse.id}`}>{horse.name}</Link>
-      <StyledButton title="Select" handleClick={() => selectHorse(horse)} disabled={compareHorses.length===2} />
+      <StyledButton
+        title="Select"
+        handleClick={() => selectHorse(horse)}
+        disabled={compareHorses.length === 2}
+      />
     </Item>
   );
 };

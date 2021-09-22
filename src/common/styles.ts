@@ -20,7 +20,7 @@ export const Section = styled.div`
   background: var(--color-white);
   border-radius: 5px;
   box-shadow: 0 0.6em 1em 0.35em rgba(0, 0, 0, 0.17);
-  padding: 20px 0;
+  padding: 20px;
 `;
 export const List = styled.div`
   display: flex;
@@ -35,7 +35,6 @@ export const ButtonsSection = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: space-between;
-  padding: 0 20px;
 `;
 export const ButtonsGroup = styled.div`
   width: 100%;

@@ -3,11 +3,7 @@ import styled from "@emotion/styled/macro";
 import { useAppDispatch } from "../api/store";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import {
-  selectHorses,
-  selectIsHorsesLoading,
-  selectCompareHorses,
-} from "../api/selectors";
+import { selectHorses, selectIsHorsesLoading } from "../api/selectors";
 import { addHorseToCompare } from "../api/slices/horsesSlice";
 import { getHorses } from "../api/requests/getHorses";
 import Horse from "./Horse";
@@ -33,7 +29,6 @@ const HomePage = () => {
   const [horsesOnPage, setHorsesOnPage] = useState<horseIdInterface[]>();
   const dispatch = useAppDispatch();
   const horses = useSelector(selectHorses);
-  const compareHorses = useSelector(selectCompareHorses);
   const isHorsesLoading = useSelector(selectIsHorsesLoading);
   const history = useHistory();
 
