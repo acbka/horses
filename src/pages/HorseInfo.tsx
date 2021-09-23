@@ -82,9 +82,21 @@ const HorseInfo = () => {
         <ButtonsSection>
           <ButtonsGroup>
             {!isEdit ? (
-              <Button title="Edit" handleClick={() => setIsEdit(true)} />
+              <Button
+                title="Edit"
+                handleClick={() => setIsEdit(true)}
+                disabled={
+                  compareHorses.findIndex((item) => item.id === horse.id) !== -1
+                }
+              />
             ) : (
-              <Button title="Save" handleClick={updateCurrentHorse} />
+              <Button
+                title="Save"
+                handleClick={updateCurrentHorse}
+                disabled={
+                  compareHorses.findIndex((item) => item.id === horse.id) !== -1
+                }
+              />
             )}
             <Button
               title="Select"
