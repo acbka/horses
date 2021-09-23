@@ -8,6 +8,7 @@ import { getHorseById } from "../api/requests/getHorseById";
 import { updateHorse } from "../api/requests/updateHorse";
 import { horseIdInterface, horseInterface } from "../common/horseInterfaces";
 import Button from "../components/Button";
+import Alarm from "../components/Alarm";
 import InputForm from "../components/InputForm";
 import {
   Wrapper,
@@ -34,7 +35,8 @@ const HorseInfo = () => {
   const [currentHorse, setCurrentHorse] = useState<
     horseIdInterface | horseInterface
   >(horse);
-  const [isEdit, setIsEdit] = useState(false);
+   const [isEdit, setIsEdit] = useState(false);
+   const [isAlarmOpen, setIsAlarmOpen] = useState(false);
 
   useEffect(() => {
     dispatch(getHorseById({ id }));
@@ -44,12 +46,13 @@ const HorseInfo = () => {
     if (currentHorse.name) {
       dispatch(updateHorse({ horse: currentHorse as horseIdInterface }));
       setIsEdit(false);
-    } else alert("Enter horse name");
+    } else setIsAlarmOpen(true);
   };
   if (Object.keys(horse).length === 0) return null;
 
   return (
-    <Wrapper>
+     <Wrapper>
+        {isAlarmOpen && <Alarm setIsOpen={() => setIsAlarmOpen(false)} />}
       <Section>
         {isEdit ? (
           <InputForm initialHorse={horse} setNewHorse={setCurrentHorse} />

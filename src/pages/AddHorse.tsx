@@ -3,6 +3,7 @@ import { useHistory } from "react-router";
 import { useAppDispatch } from "../api/store";
 import { addHorse } from "../api/requests/addHorse";
 import Button from "../components/Button";
+import Alarm from "../components/Alarm";
 import InputForm from "../components/InputForm";
 import {
   Wrapper,
@@ -17,15 +18,17 @@ const AddHorse = () => {
   const dispatch = useAppDispatch();
   const history = useHistory();
   const [horse, setHorse] = useState<horseInterface>();
+  const [isAlarmOpen, setIsAlarmOpen] = useState(false);
 
   const createHorse = () => {
     if (horse?.name) {
       dispatch(addHorse({ horse })).then(() => history.goBack());
-    } else alert("Enter horse name");
+    } else setIsAlarmOpen(true);
   };
 
   return (
     <Wrapper>
+      {isAlarmOpen && <Alarm setIsOpen={() => setIsAlarmOpen(false)} />}
       <Section>
         <InputForm setNewHorse={setHorse} />
         <ButtonsSection>
