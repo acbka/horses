@@ -3,8 +3,13 @@ import styled from "@emotion/styled/macro";
 import { useAppDispatch } from "../api/store";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import { selectHorses, selectIsHorsesLoading } from "../api/selectors";
+import {
+  selectHorses,
+  selectIsHorsesLoading,
+  selectPage,
+} from "../api/selectors";
 import { addHorseToCompare } from "../api/slices/horsesSlice";
+import { setPage } from "../api/slices/pageSlice";
 import { getHorses } from "../api/requests/getHorses";
 import Horse from "./Horse";
 import Button from "../components/Button";
@@ -24,11 +29,11 @@ const AddButton = styled(Button)`
 
 const HomePage = () => {
   const horsesPerPage = 5;
-  const [page, setPage] = useState(1);
   const [pages, setPages] = useState(1);
   const [horsesOnPage, setHorsesOnPage] = useState<horseIdInterface[]>();
   const dispatch = useAppDispatch();
   const horses = useSelector(selectHorses);
+  const page = useSelector(selectPage);
   const isHorsesLoading = useSelector(selectIsHorsesLoading);
   const history = useHistory();
 
@@ -66,12 +71,12 @@ const HomePage = () => {
           <ButtonsGroup>
             <Button
               title={`Preev ${horsesPerPage}`}
-              handleClick={() => setPage(page - 1)}
+              handleClick={() => dispatch(setPage(page - 1))}
               disabled={page === 1}
             />
             <Button
               title={`Next ${horsesPerPage}`}
-              handleClick={() => setPage(page + 1)}
+              handleClick={() => dispatch(setPage(page + 1))}
               disabled={page === pages}
             />
           </ButtonsGroup>

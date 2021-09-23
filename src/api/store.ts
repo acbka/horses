@@ -3,6 +3,7 @@ import horsesSlice from "./slices/horsesSlice";
 import horseSlice from "./slices/horseSlice";
 import { horseIdInterface } from "../common/horseInterfaces";
 import { useDispatch } from "react-redux";
+import pageSlice from "./slices/pageSlice";
 
 export type HorseStateType = {
   horses: {
@@ -13,12 +14,16 @@ export type HorseStateType = {
   horse: {
     horse: horseIdInterface;
   };
+  pages: {
+    page: number;
+  };
 };
 
 const store = configureStore({
   reducer: {
-    horse: horseSlice,
     horses: horsesSlice,
+    horse: horseSlice,
+    pages: pageSlice,
   },
 });
 export type AppDispatch = typeof store.dispatch;
