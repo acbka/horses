@@ -60,7 +60,8 @@ const HomePage = () => {
   ));
 
   const addNewHorse = () => {
-    history.push("/AddHorse");
+     history.push("/AddHorse");
+     dispatch(setPage(pages))
   };
 
   return (
