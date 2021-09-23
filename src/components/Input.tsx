@@ -21,6 +21,7 @@ const StyledInput = styled.input`
   border-radius: 4px;
   margin: 5px;
   background: transparent;
+  font-size: 15px;
 `;
 
 const Input = ({ name, initialValue, handleChange }: InputPropsType) => {

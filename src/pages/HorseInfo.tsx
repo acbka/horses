@@ -35,12 +35,16 @@ const HorseInfo = () => {
   const [currentHorse, setCurrentHorse] = useState<
     horseIdInterface | horseInterface
   >(horse);
-   const [isEdit, setIsEdit] = useState(false);
-   const [isAlarmOpen, setIsAlarmOpen] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
+  const [isAlarmOpen, setIsAlarmOpen] = useState(false);
 
   useEffect(() => {
-    dispatch(getHorseById({ id }));
+     dispatch(getHorseById({ id }));
   }, [dispatch, id]);
+   
+   useEffect(() => {
+      setCurrentHorse(horse)
+   }, [horse])
 
   const updateCurrentHorse = () => {
     if (currentHorse.name) {
@@ -51,8 +55,8 @@ const HorseInfo = () => {
   if (Object.keys(horse).length === 0) return null;
 
   return (
-     <Wrapper>
-        {isAlarmOpen && <Alarm setIsOpen={() => setIsAlarmOpen(false)} />}
+    <Wrapper>
+      {isAlarmOpen && <Alarm setIsOpen={() => setIsAlarmOpen(false)} />}
       <Section>
         {isEdit ? (
           <InputForm initialHorse={horse} setNewHorse={setCurrentHorse} />
