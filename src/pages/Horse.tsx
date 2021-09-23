@@ -1,5 +1,6 @@
-import { horseIdInterface } from "../common/horseInterfaces";
+import React from "react";
 import styled from "@emotion/styled/macro";
+import { horseIdInterface } from "../common/horseInterfaces";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectCompareHorses } from "../api/selectors";

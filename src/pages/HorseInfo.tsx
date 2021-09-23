@@ -3,8 +3,7 @@ import styled from "@emotion/styled/macro";
 import { useParams, useHistory } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { addHorseToCompare } from "../api/slices/horsesSlice";
-import { selectCompareHorses } from "../api/selectors";
-import { selectHorse } from "../api/selectors";
+import { selectHorse, selectCompareHorses } from "../api/selectors";
 import { getHorseById } from "../api/requests/getHorseById";
 import { updateHorse } from "../api/requests/updateHorse";
 import { horseIdInterface, horseInterface } from "../common/horseInterfaces";
@@ -47,7 +46,6 @@ const HorseInfo = () => {
       setIsEdit(false);
     } else alert("Enter horse name");
   };
-
   if (Object.keys(horse).length === 0) return null;
 
   return (
