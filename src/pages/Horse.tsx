@@ -29,7 +29,10 @@ const Horse = ({ horse, selectHorse }: HorsePropsType) => {
       <StyledButton
         title="Select"
         handleClick={() => selectHorse(horse)}
-        disabled={compareHorses.length === 2}
+        disabled={
+          compareHorses.length === 2 ||
+          compareHorses.findIndex((item) => item.id === horse.id) !== -1
+        }
       />
     </Item>
   );

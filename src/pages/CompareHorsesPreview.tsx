@@ -54,11 +54,13 @@ const CompareHorsesPreview = () => {
       ) : (
         <StyledDiv>No horses to compare</StyledDiv>
       )}
-      <Button
-        title="Compare"
-        disabled={compareHorses.length !== 2}
-        handleClick={() => history.push("/CompareHorses")}
-      />
+      {compareHorses.length === 2 && (
+        <Button
+          title="Compare"
+          disabled={compareHorses.length !== 2}
+          handleClick={() => history.push("/CompareHorses")}
+        />
+      )}
     </Wrapper>
   );
 };

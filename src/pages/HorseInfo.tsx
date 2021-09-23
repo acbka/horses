@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import styled from "@emotion/styled/macro";
 import { useParams, useHistory } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
+import { addHorseToCompare } from "../api/slices/horsesSlice";
+import { selectCompareHorses } from "../api/selectors";
 import { selectHorse } from "../api/selectors";
 import { getHorseById } from "../api/requests/getHorseById";
 import { updateHorse } from "../api/requests/updateHorse";
@@ -28,6 +30,7 @@ const HorseInfo = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const horse: horseIdInterface = useSelector(selectHorse);
+  const compareHorses = useSelector(selectCompareHorses);
   const { id } = useParams<Params>();
   const [currentHorse, setCurrentHorse] = useState<
     horseIdInterface | horseInterface
@@ -84,12 +87,22 @@ const HorseInfo = () => {
               <Button title="Save" handleClick={updateCurrentHorse} />
             )}
             <Button
-              title="Back"
+              title="Select"
               handleClick={() => {
-                history.goBack();
+                dispatch(addHorseToCompare(horse));
               }}
+              disabled={
+                compareHorses.length === 2 ||
+                compareHorses.findIndex((item) => item.id === horse.id) !== -1
+              }
             />
           </ButtonsGroup>
+          <Button
+            title="Back"
+            handleClick={() => {
+              history.goBack();
+            }}
+          />
         </ButtonsSection>
       </Section>
     </Wrapper>

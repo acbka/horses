@@ -29,7 +29,6 @@ const CompareHorses = () => {
   return (
     <Wrapper>
       <Section>
-        {/* {!!compareHorses.length && ( */}
         <List>
           <Item>
             <span>Name: </span>
@@ -52,7 +51,6 @@ const CompareHorses = () => {
             <span>{compareHorses[1]?.profile.physical.weight}</span>
           </Item>
         </List>
-        {/* )} */}
         <BackButton title="Back" handleClick={goToMainPage} />
       </Section>
     </Wrapper>
