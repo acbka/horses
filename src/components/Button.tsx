@@ -13,7 +13,6 @@ const StyledButton = styled.button`
   height: 30px;
   text-align: center;
   font-family: inherit;
-  font-weight: 600px;
   border: none;
   border-radius: 25px;
   cursor: pointer;

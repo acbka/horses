@@ -17,6 +17,7 @@ import {
   ButtonsSection,
   ButtonsGroup,
 } from "../common/styles";
+import Spinner from "../components/Spinner";
 
 type Params = {
   id: string;
@@ -29,7 +30,7 @@ const Item = styled.div`
 const HorseInfo = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const horse: horseIdInterface = useSelector(selectHorse);
+  const { horse, isLoading } = useSelector(selectHorse);
   const compareHorses = useSelector(selectCompareHorses);
   const { id } = useParams<Params>();
   const [currentHorse, setCurrentHorse] = useState<
@@ -39,12 +40,12 @@ const HorseInfo = () => {
   const [isAlarmOpen, setIsAlarmOpen] = useState(false);
 
   useEffect(() => {
-     dispatch(getHorseById({ id }));
+    dispatch(getHorseById({ id }));
   }, [dispatch, id]);
-   
-   useEffect(() => {
-      setCurrentHorse(horse)
-   }, [horse])
+
+  useEffect(() => {
+    setCurrentHorse(horse);
+  }, [horse]);
 
   const updateCurrentHorse = () => {
     if (currentHorse.name) {
@@ -57,71 +58,77 @@ const HorseInfo = () => {
   return (
     <Wrapper>
       {isAlarmOpen && <Alarm setIsOpen={() => setIsAlarmOpen(false)} />}
-      <Section>
-        {isEdit ? (
-          <InputForm initialHorse={horse} setNewHorse={setCurrentHorse} />
-        ) : (
-          <List>
-            <Item>
-              <span>Name: </span>
-              {horse.name}
-            </Item>
-            <Item>
-              <span>Favourite Food: </span>
-              {horse.profile.favouriteFood}
-            </Item>
-            <Item>
-              <span>Height: </span>
-              {horse.profile.physical.height > 0
-                ? horse.profile?.physical?.height
-                : ""}
-            </Item>
-            <Item>
-              <span>Weight: </span>
-              {horse.profile.physical.weight > 0
-                ? horse.profile.physical.weight
-                : ""}
-            </Item>
-          </List>
-        )}
-        <ButtonsSection>
-          <ButtonsGroup>
-            {!isEdit ? (
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <Section>
+          {isEdit ? (
+            <InputForm initialHorse={horse} setNewHorse={setCurrentHorse} />
+          ) : (
+            <List>
+              <Item>
+                <span>Name: </span>
+                {horse.name}
+              </Item>
+              <Item>
+                <span>Favourite Food: </span>
+                {horse.profile.favouriteFood}
+              </Item>
+              <Item>
+                <span>Height: </span>
+                {horse.profile.physical.height > 0
+                  ? horse.profile?.physical?.height
+                  : ""}
+              </Item>
+              <Item>
+                <span>Weight: </span>
+                {horse.profile.physical.weight > 0
+                  ? horse.profile.physical.weight
+                  : ""}
+              </Item>
+            </List>
+          )}
+          <ButtonsSection>
+            <ButtonsGroup>
+              {!isEdit ? (
+                <Button
+                  title="Edit"
+                  handleClick={() => setIsEdit(true)}
+                  disabled={
+                    compareHorses.findIndex((item) => item.id === horse.id) !==
+                    -1
+                  }
+                />
+              ) : (
+                <Button
+                  title="Save"
+                  handleClick={updateCurrentHorse}
+                  disabled={
+                    compareHorses.findIndex((item) => item.id === horse.id) !==
+                    -1
+                  }
+                />
+              )}
               <Button
-                title="Edit"
-                handleClick={() => setIsEdit(true)}
+                title="Select"
+                handleClick={() => {
+                  dispatch(addHorseToCompare(horse));
+                }}
                 disabled={
+                  compareHorses.length === 2 ||
                   compareHorses.findIndex((item) => item.id === horse.id) !== -1
                 }
               />
-            ) : (
-              <Button
-                title="Save"
-                handleClick={updateCurrentHorse}
-                disabled={
-                  compareHorses.findIndex((item) => item.id === horse.id) !== -1
-                }
-              />
-            )}
+            </ButtonsGroup>
             <Button
-              title="Select"
+              title="Back"
               handleClick={() => {
-                dispatch(addHorseToCompare(horse));
+                history.goBack();
               }}
-              disabled={
-                compareHorses.length === 2 ||
-                compareHorses.findIndex((item) => item.id === horse.id) !== -1
-              }
             />
-          </ButtonsGroup>
-          <Button
-            title="Back"
-            handleClick={() => {
-              history.goBack();
-            }}
-          />
-        </ButtonsSection>
-      </Section>
+          </ButtonsSection>
+        </Section>
+      )}
     </Wrapper>
   );
 };
