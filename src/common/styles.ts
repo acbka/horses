@@ -25,7 +25,6 @@ export const Section = styled.div`
 export const List = styled.div`
   display: flex;
   min-width: 100px;
-  height: 100%;
   flex-direction: column;
   justify-content: flex-start;
 `;
