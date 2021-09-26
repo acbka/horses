@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { ChangeEvent } from "react";
 import styled from "@emotion/styled/macro";
 
 type InputPropsType = {
@@ -25,15 +25,8 @@ const StyledInput = styled.input`
 `;
 
 const Input = ({ name, initialValue, handleChange }: InputPropsType) => {
-  const [inputValue, setInputValue] = useState<string | number>(initialValue);
-
   const inputData = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
     handleChange(e.target.value);
-  };
-
-  const setData = () => {
-    handleChange(inputValue);
   };
 
   return (
@@ -42,8 +35,7 @@ const Input = ({ name, initialValue, handleChange }: InputPropsType) => {
       <StyledInput
         type="text"
         name={name}
-        value={inputValue}
-        onBlur={setData}
+        value={initialValue}
         onChange={inputData}
       />
     </Wrapper>
