@@ -2,6 +2,7 @@ import React from "react";
 import styled from "@emotion/styled/macro";
 import { horseIdInterface } from "../common/horseInterfaces";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
 import { selectCompareHorses } from "../api/selectors";
 import IconButton from "../components/IconButton";
@@ -27,31 +28,29 @@ const ButtonsGroup = styled.div`
   align-items: center;
   border: 1px solid var(--color-main);
   border-radius: 4px;
-  & :first-of-type {
-    margin-left: 0;
-  }
-`;
-const StyledLink = styled(Link)`
-  margin-right: 5px;
 `;
 
 const Horse = ({ horse, selectHorse, removeHorse }: HorsePropsType) => {
   const compareHorses = useSelector(selectCompareHorses);
+  const history = useHistory();
+
+  const editHorse = () => {
+    history.push(`/edit/${horse.id}`);
+  };
 
   return (
     <>
       <Item>
         <Link to={`/horse/${horse.id}`}>{horse.name}</Link>
         <ButtonsGroup>
-          <StyledLink to={`/edit/${horse.id}`}>
-            <IconButton
-              disabled={
-                compareHorses.findIndex((item) => item.id === horse.id) !== -1
-              }
-            >
-              <EditIcon />
-            </IconButton>
-          </StyledLink>
+          <IconButton
+            handleClick={editHorse}
+            disabled={
+              compareHorses.findIndex((item) => item.id === horse.id) !== -1
+            }
+          >
+            <EditIcon />
+          </IconButton>
           <IconButton
             handleClick={() => selectHorse(horse)}
             disabled={
