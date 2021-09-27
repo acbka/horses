@@ -27,27 +27,33 @@ const ButtonsGroup = styled.div`
   align-items: center;
   border: 1px solid var(--color-main);
   border-radius: 4px;
+  & :first-of-type {
+     margin-left: 0;
+  }
+`;
+const StyledLink = styled(Link)`
+  margin-right: 5px;
 `;
 
 const Horse = ({ horse, selectHorse, removeHorse }: HorsePropsType) => {
   const compareHorses = useSelector(selectCompareHorses);
 
-  const getData = () => {
-    console.log("ggg");
-  };
   return (
     <>
       <Item>
         <Link to={`/horse/${horse.id}`}>{horse.name}</Link>
         <ButtonsGroup>
-          <MenuButton
-            handleClick={getData}
-            disabled={
-              compareHorses.findIndex((item) => item.id === horse.id) !== -1
-            }
-          >
-            <EditIcon />
-          </MenuButton>
+          <StyledLink to={`/edit/${horse.id}`}>
+            <MenuButton
+              // handleClick={getData}
+              disabled={
+                compareHorses.findIndex((item) => item.id === horse.id) !== -1
+              }
+            >
+              <EditIcon />
+            </MenuButton>
+          </StyledLink>
+
           <MenuButton
             handleClick={() => selectHorse(horse)}
             disabled={

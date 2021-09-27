@@ -5,6 +5,7 @@ import HorseInfo from "./pages/HorseInfo";
 import AddHorse from "./pages/AddHorse";
 import CompareHorsesPreview from "./pages/CompareHorsesPreview";
 import CompareHorses from "./pages/CompareHorses";
+import EditHorse from "./pages/EditHorse";
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
       <Switch>
         <Route path="/horse/:id">
           <HorseInfo />
+        </Route>
+        <Route path="/edit/:id">
+          <EditHorse />
         </Route>
         <Route path="/addHorse">
           <AddHorse />

@@ -5,6 +5,7 @@ import { horseIdInterface } from "../../common/horseInterfaces";
 type DeleteHorseType = {
   horse: horseIdInterface;
 };
+
 export const deleteHorse = createAsyncThunk(
   "horse/deleteHorse",
   async ({ horse }: DeleteHorseType) => {
@@ -15,7 +16,7 @@ export const deleteHorse = createAsyncThunk(
       method: "DELETE",
       body: JSON.stringify(horse),
     });
-    const data = await response.json(); 
+    const data = await response.json();
     return data;
   }
 );

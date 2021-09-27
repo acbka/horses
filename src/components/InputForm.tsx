@@ -49,7 +49,7 @@ const InputForm = ({ initialHorse, setNewHorse }: InputFormPropsType) => {
               ...horse.profile,
               physical: {
                 ...horse.profile?.physical,
-                height: parseFloat(value as string),
+                height: value,
               },
             },
           })

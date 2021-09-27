@@ -5,7 +5,7 @@ type MenuButtonPropsType = {
   disabled?: boolean;
   children?: React.ReactNode;
   className?: string;
-  handleClick: () => void;
+  handleClick?: () => void;
 };
 
 const StyledButton = styled.button`
