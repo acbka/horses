@@ -32,10 +32,9 @@ const StyledButton = styled.button`
       stroke: var(--color-darkgrey);
     }
   }
-  
 `;
 
-const MenuButton = ({
+const IconButton = ({
   title,
   disabled,
   children,
@@ -53,4 +52,4 @@ const MenuButton = ({
   );
 };
 
-export default MenuButton;
+export default IconButton;

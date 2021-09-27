@@ -4,7 +4,7 @@ import { horseIdInterface } from "../common/horseInterfaces";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectCompareHorses } from "../api/selectors";
-import MenuButton from "../components/MenuButton";
+import IconButton from "../components/IconButton";
 import SelectIcon from "../components/icons/SelectIcon";
 import EditIcon from "../components/icons/EditIcon";
 import DeleteIcon from "../components/icons/DeleteIcon";
@@ -28,7 +28,7 @@ const ButtonsGroup = styled.div`
   border: 1px solid var(--color-main);
   border-radius: 4px;
   & :first-of-type {
-     margin-left: 0;
+    margin-left: 0;
   }
 `;
 const StyledLink = styled(Link)`
@@ -44,17 +44,15 @@ const Horse = ({ horse, selectHorse, removeHorse }: HorsePropsType) => {
         <Link to={`/horse/${horse.id}`}>{horse.name}</Link>
         <ButtonsGroup>
           <StyledLink to={`/edit/${horse.id}`}>
-            <MenuButton
-              // handleClick={getData}
+            <IconButton
               disabled={
                 compareHorses.findIndex((item) => item.id === horse.id) !== -1
               }
             >
               <EditIcon />
-            </MenuButton>
+            </IconButton>
           </StyledLink>
-
-          <MenuButton
+          <IconButton
             handleClick={() => selectHorse(horse)}
             disabled={
               compareHorses.length === 2 ||
@@ -62,10 +60,10 @@ const Horse = ({ horse, selectHorse, removeHorse }: HorsePropsType) => {
             }
           >
             <SelectIcon />
-          </MenuButton>
-          <MenuButton handleClick={() => removeHorse(horse)}>
+          </IconButton>
+          <IconButton handleClick={() => removeHorse(horse)}>
             <DeleteIcon />
-          </MenuButton>
+          </IconButton>
         </ButtonsGroup>
       </Item>
     </>

@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import styled from "@emotion/styled/macro";
 import { useParams, useHistory } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { addHorseToCompare } from "../api/slices/horsesSlice";
@@ -46,6 +45,7 @@ const EditHorse = () => {
        : setIsAlarmOpen(true);
        history.push(`/horse/${horse.id}`)
   };
+   
   if (Object.keys(horse).length === 0) return null;
 
   return (

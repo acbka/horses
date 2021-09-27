@@ -58,6 +58,7 @@ const HorseInfo = () => {
       setIsEdit(false);
     } else setIsAlarmOpen(true);
   };
+   
   if (Object.keys(horse).length === 0) return null;
 
   return (

@@ -56,6 +56,11 @@ const HomePage = () => {
     dispatch(addHorseToCompare(value));
   };
 
+  const addNewHorse = () => {
+    history.push("/AddHorse");
+    dispatch(setPage(pages));
+  };
+
   const removeHorse = (horse: horseIdInterface) => {
     dispatch(deleteHorse({ horse }));
   };
@@ -68,11 +73,6 @@ const HomePage = () => {
       removeHorse={removeHorse}
     />
   ));
-
-  const addNewHorse = () => {
-    history.push("/AddHorse");
-    dispatch(setPage(pages));
-  };
 
   return (
     <Wrapper>
