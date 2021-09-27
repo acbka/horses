@@ -48,7 +48,12 @@ const HorseInfo = () => {
   }, [horse]);
 
   const updateCurrentHorse = () => {
-    if (currentHorse.name) {
+    if (
+      currentHorse?.name &&
+      currentHorse?.profile.favouriteFood &&
+      currentHorse?.profile.physical.height &&
+      currentHorse?.profile.physical.weight
+    ) {
       dispatch(updateHorse({ horse: currentHorse as horseIdInterface }));
       setIsEdit(false);
     } else setIsAlarmOpen(true);
@@ -76,15 +81,11 @@ const HorseInfo = () => {
               </Item>
               <Item>
                 <span>Height: </span>
-                {horse.profile.physical.height > 0
-                  ? horse.profile?.physical?.height
-                  : ""}
+                {horse.profile.physical.height}
               </Item>
               <Item>
                 <span>Weight: </span>
-                {horse.profile.physical.weight > 0
-                  ? horse.profile.physical.weight
-                  : ""}
+                {horse.profile.physical.weight}
               </Item>
             </List>
           )}

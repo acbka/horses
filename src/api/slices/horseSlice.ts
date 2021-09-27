@@ -4,19 +4,20 @@ import { addHorse } from "../requests/addHorse";
 import { updateHorse } from "../requests/updateHorse";
 
 const initialState = {
-   isLoading: false,
-   horse: {}
+  isLoading: false,
+  horse: {},
 };
+
 const horseSlice = createSlice({
   name: "horse",
   initialState,
   reducers: {},
-   extraReducers: (builder) => {
-      builder.addCase(getHorseById.pending, (state) => {
-         state.isLoading = true;
-       });
-      builder.addCase(getHorseById.fulfilled, (state, { payload }) => {
-         state.isLoading = false;
+  extraReducers: (builder) => {
+    builder.addCase(getHorseById.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(getHorseById.fulfilled, (state, { payload }) => {
+      state.isLoading = false;
       state.horse = payload;
     });
     builder.addCase(addHorse.fulfilled, (state, { payload }) => {

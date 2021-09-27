@@ -2,7 +2,7 @@ import styled from "@emotion/styled/macro";
 
 export const Wrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,6 +25,7 @@ export const Section = styled.div`
 export const List = styled.div`
   display: flex;
   min-width: 100px;
+  width: 100%;
   flex-direction: column;
   justify-content: flex-start;
 `;

@@ -2,21 +2,20 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { horseByIdUrl } from "../endpoints";
 import { horseIdInterface } from "../../common/horseInterfaces";
 
-type UpdateHorseType = {
+type DeleteHorseType = {
   horse: horseIdInterface;
 };
-
-export const updateHorse = createAsyncThunk(
-  "horse/updateHorse",
-  async ({ horse }: UpdateHorseType) => {
+export const deleteHorse = createAsyncThunk(
+  "horse/deleteHorse",
+  async ({ horse }: DeleteHorseType) => {
     const response = await fetch(horseByIdUrl(horse.id), {
       headers: {
         "Content-Type": "application/json",
       },
-      method: "PUT",
+      method: "DELETE",
       body: JSON.stringify(horse),
     });
-    const data = await response.json();
+    const data = await response.json(); 
     return data;
   }
 );

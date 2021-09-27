@@ -13,7 +13,6 @@ import {
 } from "../common/styles";
 import { horseInterface } from "../common/horseInterfaces";
 
-
 const AddHorse = () => {
   const dispatch = useAppDispatch();
   const history = useHistory();
@@ -21,7 +20,12 @@ const AddHorse = () => {
   const [isAlarmOpen, setIsAlarmOpen] = useState(false);
 
   const createHorse = () => {
-    if (horse?.name) {
+    if (
+      horse?.name &&
+      horse?.profile.favouriteFood &&
+      horse?.profile.physical.height &&
+      horse?.profile.physical.weight
+    ) {
       dispatch(addHorse({ horse })).then(() => history.goBack());
     } else setIsAlarmOpen(true);
   };

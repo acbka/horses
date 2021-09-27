@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getHorses } from "../requests/getHorses";
 import { horseIdInterface } from "../../common/horseInterfaces";
+import { deleteHorse } from "../requests/deleteHorse";
 
 type initialStateType = {
   isLoading: boolean;
@@ -17,6 +18,7 @@ const initialState: initialStateType = {
   horses: [],
   compareHorses: [],
 };
+
 const horsesSlice = createSlice({
   name: "horses",
   initialState,
@@ -48,9 +50,11 @@ const horsesSlice = createSlice({
       state.isError = false;
       state.horses = payload;
     });
+    builder.addCase(deleteHorse.fulfilled, (state, { payload }) => {
+      state.horses = payload;
+    });
   },
 });
-
 export const { addHorseToCompare, removeHorseFromCompare } =
   horsesSlice.actions;
 export default horsesSlice.reducer;

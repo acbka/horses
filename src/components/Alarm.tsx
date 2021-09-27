@@ -36,7 +36,7 @@ const Alarm = ({ setIsOpen }: AlarmPropsType) => {
     <>
       <Layout></Layout>
       <Wrapper>
-        <Paragraph>Enter horse name!</Paragraph>
+        <Paragraph>All fields must be filled!</Paragraph>
         <Button title="OK" handleClick={setIsOpen} />
       </Wrapper>
     </>

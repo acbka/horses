@@ -12,8 +12,8 @@ export type HorseStateType = {
     compareHorses: horseIdInterface[];
   };
   horse: {
-     horse: horseIdInterface;
-     isLoading: boolean;
+    horse: horseIdInterface;
+    isLoading: boolean;
   };
   pages: {
     page: number;

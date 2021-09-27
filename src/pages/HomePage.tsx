@@ -11,6 +11,7 @@ import {
 import { addHorseToCompare } from "../api/slices/horsesSlice";
 import { setPage } from "../api/slices/pageSlice";
 import { getHorses } from "../api/requests/getHorses";
+import { deleteHorse } from "../api/requests/deleteHorse";
 import Horse from "./Horse";
 import Button from "../components/Button";
 import { horseIdInterface } from "../common/horseInterfaces";
@@ -55,13 +56,22 @@ const HomePage = () => {
     dispatch(addHorseToCompare(value));
   };
 
+  const removeHorse = (horse: horseIdInterface) => {
+    dispatch(deleteHorse({ horse }));
+  };
+
   const horsesList = horsesOnPage?.map((item, index) => (
-    <Horse key={index} horse={item} selectHorse={createComparableArray} />
+    <Horse
+      key={index}
+      horse={item}
+      selectHorse={createComparableArray}
+      removeHorse={removeHorse}
+    />
   ));
 
   const addNewHorse = () => {
-     history.push("/AddHorse");
-     dispatch(setPage(pages))
+    history.push("/AddHorse");
+    dispatch(setPage(pages));
   };
 
   return (

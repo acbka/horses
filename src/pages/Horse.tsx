@@ -4,38 +4,65 @@ import { horseIdInterface } from "../common/horseInterfaces";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectCompareHorses } from "../api/selectors";
-import Button from "../components/Button";
+import MenuButton from "../components/MenuButton";
+import SelectIcon from "../components/icons/SelectIcon";
+import EditIcon from "../components/icons/EditIcon";
+import DeleteIcon from "../components/icons/DeleteIcon";
 
 type HorsePropsType = {
   horse: horseIdInterface;
   selectHorse: (arg: horseIdInterface) => void;
+  removeHorse: (arg: horseIdInterface) => void;
 };
 
 const Item = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 10px 0;
+  padding: 10px;
+  position: relative;
 `;
-const StyledButton = styled(Button)`
-  margin-left: 35px;
-  width: 50px;
-  height: 20px;
+const ButtonsGroup = styled.div`
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--color-main);
+  border-radius: 4px;
 `;
 
-const Horse = ({ horse, selectHorse }: HorsePropsType) => {
+const Horse = ({ horse, selectHorse, removeHorse }: HorsePropsType) => {
   const compareHorses = useSelector(selectCompareHorses);
+
+  const getData = () => {
+    console.log("ggg");
+  };
   return (
-    <Item>
-      <Link to={`/horse/${horse.id}`}>{horse.name}</Link>
-      <StyledButton
-        title="Select"
-        handleClick={() => selectHorse(horse)}
-        disabled={
-          compareHorses.length === 2 ||
-          compareHorses.findIndex((item) => item.id === horse.id) !== -1
-        }
-      />
-    </Item>
+    <>
+      <Item>
+        <Link to={`/horse/${horse.id}`}>{horse.name}</Link>
+        <ButtonsGroup>
+          <MenuButton
+            handleClick={getData}
+            disabled={
+              compareHorses.findIndex((item) => item.id === horse.id) !== -1
+            }
+          >
+            <EditIcon />
+          </MenuButton>
+          <MenuButton
+            handleClick={() => selectHorse(horse)}
+            disabled={
+              compareHorses.length === 2 ||
+              compareHorses.findIndex((item) => item.id === horse.id) !== -1
+            }
+          >
+            <SelectIcon />
+          </MenuButton>
+          <MenuButton handleClick={() => removeHorse(horse)}>
+            <DeleteIcon />
+          </MenuButton>
+        </ButtonsGroup>
+      </Item>
+    </>
   );
 };
 
