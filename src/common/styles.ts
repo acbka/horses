@@ -11,6 +11,7 @@ export const Wrapper = styled.div`
   background-image: url("https://source.unsplash.com/1600x900/?horse");
 `;
 export const Section = styled.div`
+  min-height: 296px;
   height: 100%;
   min-width: 330px;
   display: flex;

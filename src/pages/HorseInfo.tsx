@@ -1,15 +1,11 @@
-import { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import styled from "@emotion/styled/macro";
 import { useParams, useHistory } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { addHorseToCompare } from "../api/slices/horsesSlice";
 import { selectHorse, selectCompareHorses } from "../api/selectors";
 import { getHorseById } from "../api/requests/getHorseById";
-import { updateHorse } from "../api/requests/updateHorse";
-import { horseIdInterface, horseInterface } from "../common/horseInterfaces";
 import Button from "../components/Button";
-import Alarm from "../components/Alarm";
-import InputForm from "../components/InputForm";
 import {
   Wrapper,
   Section,
@@ -33,84 +29,49 @@ const HorseInfo = () => {
   const { horse, isLoading } = useSelector(selectHorse);
   const compareHorses = useSelector(selectCompareHorses);
   const { id } = useParams<Params>();
-  const [currentHorse, setCurrentHorse] = useState<
-    horseIdInterface | horseInterface
-  >(horse);
-  const [isEdit, setIsEdit] = useState(false);
-  const [isAlarmOpen, setIsAlarmOpen] = useState(false);
 
   useEffect(() => {
     dispatch(getHorseById({ id }));
   }, [dispatch, id]);
 
-  useEffect(() => {
-    setCurrentHorse(horse);
-  }, [horse]);
-
-  const updateCurrentHorse = () => {
-    if (
-      currentHorse?.name &&
-      currentHorse?.profile.favouriteFood &&
-      currentHorse?.profile.physical.height &&
-      currentHorse?.profile.physical.weight
-    ) {
-      dispatch(updateHorse({ horse: currentHorse as horseIdInterface }));
-      setIsEdit(false);
-    } else setIsAlarmOpen(true);
+  const editHorse = () => {
+    history.push(`/edit/${horse.id}`);
   };
-   
   if (Object.keys(horse).length === 0) return null;
 
   return (
     <Wrapper>
-      {isAlarmOpen && <Alarm setIsOpen={() => setIsAlarmOpen(false)} />}
       {isLoading ? (
         <Spinner />
       ) : (
         <Section>
-          {isEdit ? (
-            <InputForm initialHorse={horse} setNewHorse={setCurrentHorse} />
-          ) : (
-            <List>
-              <Item>
-                <span>Name: </span>
-                {horse.name}
-              </Item>
-              <Item>
-                <span>Favourite Food: </span>
-                {horse.profile.favouriteFood}
-              </Item>
-              <Item>
-                <span>Height: </span>
-                {horse.profile.physical.height}
-              </Item>
-              <Item>
-                <span>Weight: </span>
-                {horse.profile.physical.weight}
-              </Item>
-            </List>
-          )}
+          <List>
+            <Item>
+              <span>Name: </span>
+              {horse.name}
+            </Item>
+            <Item>
+              <span>Favourite Food: </span>
+              {horse.profile.favouriteFood}
+            </Item>
+            <Item>
+              <span>Height: </span>
+              {horse.profile.physical.height}
+            </Item>
+            <Item>
+              <span>Weight: </span>
+              {horse.profile.physical.weight}
+            </Item>
+          </List>
           <ButtonsSection>
             <ButtonsGroup>
-              {!isEdit ? (
-                <Button
-                  title="Edit"
-                  handleClick={() => setIsEdit(true)}
-                  disabled={
-                    compareHorses.findIndex((item) => item.id === horse.id) !==
-                    -1
-                  }
-                />
-              ) : (
-                <Button
-                  title="Save"
-                  handleClick={updateCurrentHorse}
-                  disabled={
-                    compareHorses.findIndex((item) => item.id === horse.id) !==
-                    -1
-                  }
-                />
-              )}
+              <Button
+                title="Edit"
+                handleClick={editHorse}
+                disabled={
+                  compareHorses.findIndex((item) => item.id === horse.id) !== -1
+                }
+              />
               <Button
                 title="Select"
                 handleClick={() => {
