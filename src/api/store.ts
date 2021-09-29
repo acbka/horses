@@ -16,7 +16,7 @@ export type HorseStateType = {
     isLoading: boolean;
   };
   pages: {
-     page: number;
+    page: number;
   };
 };
 

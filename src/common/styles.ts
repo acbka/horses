@@ -8,7 +8,6 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding: 50px 50px 80px 50px;
-  background-image: url("https://source.unsplash.com/1600x900/?horse");
 `;
 export const Section = styled.div`
   min-height: 296px;

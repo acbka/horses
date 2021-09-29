@@ -41,6 +41,7 @@ const InputForm = ({ initialHorse, setNewHorse }: InputFormPropsType) => {
       />
       <Input
         name="Height"
+        type="number"
         initialValue={horse.profile?.physical.height}
         handleChange={(value) =>
           setHorse({
@@ -57,6 +58,7 @@ const InputForm = ({ initialHorse, setNewHorse }: InputFormPropsType) => {
       />
       <Input
         name="Weight"
+        type="number"
         initialValue={horse.profile.physical.weight}
         handleChange={(value) =>
           setHorse({
@@ -65,7 +67,7 @@ const InputForm = ({ initialHorse, setNewHorse }: InputFormPropsType) => {
               ...horse.profile,
               physical: {
                 ...horse.profile?.physical,
-                weight: parseFloat(value as string),
+                weight: value,
               },
             },
           })

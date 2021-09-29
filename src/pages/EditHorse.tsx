@@ -37,15 +37,17 @@ const EditHorse = () => {
   }, [dispatch, id]);
 
   const updateCurrentHorse = () => {
-    (currentHorse.name &&
+    currentHorse.name &&
     currentHorse.profile.favouriteFood &&
     currentHorse.profile.physical.height &&
-    currentHorse.profile.physical.weight)
-       ? dispatch(updateHorse({ ...horse, horse: currentHorse as horseIdInterface }))
-       : setIsAlarmOpen(true);
-       history.push(`/horse/${horse.id}`)
+    currentHorse.profile.physical.weight
+      ? dispatch(
+          updateHorse({ ...horse, horse: currentHorse as horseIdInterface })
+        )
+      : setIsAlarmOpen(true);
+    history.push(`/horse/${horse.id}`);
   };
-   
+
   if (Object.keys(horse).length === 0) return null;
 
   return (

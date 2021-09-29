@@ -3,6 +3,7 @@ import styled from "@emotion/styled/macro";
 
 type InputPropsType = {
   name: string;
+  type?: string;
   initialValue: string | number;
   handleChange: (arg: string | number) => void;
 };
@@ -25,7 +26,12 @@ const StyledInput = styled.input`
   font-size: 15px;
 `;
 
-const Input = ({ name, initialValue, handleChange }: InputPropsType) => {
+const Input = ({
+  name,
+  type = "text",
+  initialValue,
+  handleChange,
+}: InputPropsType) => {
   const inputData = (e: ChangeEvent<HTMLInputElement>) => {
     handleChange(e.target.value);
   };
@@ -34,7 +40,7 @@ const Input = ({ name, initialValue, handleChange }: InputPropsType) => {
     <Wrapper>
       <span>{`${name}: `}</span>
       <StyledInput
-        type="text"
+        type={type}
         name={name}
         value={initialValue}
         onChange={inputData}

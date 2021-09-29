@@ -10,9 +10,9 @@ export const addHorse = createAsyncThunk(
   "horse/addHorse",
   async ({ horse }: AddHorseType) => {
     const response = await fetch(horsesUrl, {
-       headers: {
-         "Content-Type": "application/json",
-       },
+      headers: {
+        "Content-Type": "application/json",
+      },
       method: "PUT",
       body: JSON.stringify(horse),
     });

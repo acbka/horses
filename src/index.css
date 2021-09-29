@@ -13,6 +13,7 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url("https://source.unsplash.com/1600x900/?horse");
 }
 a {
   color: #000;
