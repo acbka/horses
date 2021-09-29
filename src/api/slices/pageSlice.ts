@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  page: 1,
+   page: 1,
 };
 
 const pagesSlice = createSlice({
@@ -10,7 +10,7 @@ const pagesSlice = createSlice({
   reducers: {
     setPage: (state, { payload }) => {
       state.page = payload;
-    },
+     },
   },
 });
 

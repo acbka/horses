@@ -58,11 +58,12 @@ const HomePage = () => {
 
   const addNewHorse = () => {
     history.push("/AddHorse");
-    dispatch(setPage(pages));
   };
 
   const removeHorse = (horse: horseIdInterface) => {
-    dispatch(deleteHorse({ horse }));
+    dispatch(deleteHorse({ horse })).then(() =>
+      dispatch(setPage(Math.ceil((horses.length - 1) / horsesPerPage)))
+    );
   };
 
   const horsesList = horsesOnPage?.map((item, index) => (
