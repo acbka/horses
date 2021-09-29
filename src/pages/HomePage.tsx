@@ -15,7 +15,7 @@ import { deleteHorse } from "../api/requests/deleteHorse";
 import Horse from "./Horse";
 import Button from "../components/Button";
 import { horseIdInterface } from "../common/horseInterfaces";
-import Spinner from "../components/Spinner";
+import Spinner1 from "../components/Spinner";
 import {
   Wrapper,
   List,
@@ -78,7 +78,7 @@ const HomePage = () => {
   return (
     <Wrapper>
       <Section>
-        {isHorsesLoading ? <Spinner /> : <List>{horsesList}</List>}
+        {isHorsesLoading ? <Spinner1 /> : <List>{horsesList}</List>}
         <ButtonsSection>
           <ButtonsGroup>
             <Button
