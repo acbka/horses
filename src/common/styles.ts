@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 50px 50px 80px 50px;
+  
 `;
 export const Section = styled.div`
   min-height: 296px;

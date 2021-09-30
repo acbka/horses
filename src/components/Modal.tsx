@@ -1,15 +1,16 @@
 import React from "react";
 import styled from "@emotion/styled/macro";
-import Button from "./Button";
 
-type AlarmPropsType = {
-  setIsOpen: () => void;
+type ModalPropsType = {
+  children?: React.ReactNode;
 };
 
 const Wrapper = styled.div`
   position: fixed;
   top: 50px;
+  left: calc(50% - 165px);
   width: 330px;
+  height: 140px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,26 +22,21 @@ const Wrapper = styled.div`
 `;
 const Layout = styled.div`
   position: fixed;
-  width: 100vw;
-  height: 100vh;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: rgb(255, 255, 255, 0.5);
   z-index: 5;
 `;
 
-const Paragraph = styled.div`
-  padding: 20px 0;
-`;
-
-const Alarm = ({ setIsOpen }: AlarmPropsType) => {
+const Modal = ({ children }: ModalPropsType) => {
   return (
     <>
       <Layout></Layout>
-      <Wrapper>
-        <Paragraph>All fields must be filled!</Paragraph>
-        <Button title="OK" handleClick={setIsOpen} />
-      </Wrapper>
+      <Wrapper>{children}</Wrapper>
     </>
   );
 };
 
-export default Alarm;
+export default Modal;

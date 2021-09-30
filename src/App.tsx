@@ -6,6 +6,7 @@ import AddHorse from "./pages/AddHorse";
 import CompareHorsesPreview from "./pages/CompareHorsesPreview";
 import CompareHorses from "./pages/CompareHorses";
 import EditHorse from "./pages/EditHorse";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
   return (
@@ -26,7 +27,11 @@ function App() {
         </Route>
         <Route path="/">
           <HomePage />
-        </Route>
+           </Route>
+           <Route path="*">
+            <NotFoundPage />
+          </Route>
+          {/* <Route component={() => <div>404 Not found </div>} /> */}
       </Switch>
     </Router>
   );

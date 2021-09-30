@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "@emotion/styled/macro";
 import { horseIdInterface } from "../common/horseInterfaces";
 import { Link } from "react-router-dom";
@@ -9,6 +9,8 @@ import IconButton from "../components/IconButton";
 import SelectIcon from "../components/icons/SelectIcon";
 import EditIcon from "../components/icons/EditIcon";
 import DeleteIcon from "../components/icons/DeleteIcon";
+import Modal from "../components/Modal";
+import DeletePromt from "../common/DeletePromt";
 
 type HorsePropsType = {
   horse: horseIdInterface;
@@ -33,6 +35,7 @@ const ButtonsGroup = styled.div`
 const Horse = ({ horse, selectHorse, removeHorse }: HorsePropsType) => {
   const compareHorses = useSelector(selectCompareHorses);
   const history = useHistory();
+  const [isModalOpen, setModalOpen] = useState(false);
 
   const editHorse = () => {
     history.push(`/edit/${horse.id}`);
@@ -60,11 +63,19 @@ const Horse = ({ horse, selectHorse, removeHorse }: HorsePropsType) => {
           >
             <SelectIcon />
           </IconButton>
-          <IconButton handleClick={() => removeHorse(horse)}>
+          <IconButton handleClick={() => setModalOpen(true)}>
             <DeleteIcon />
           </IconButton>
         </ButtonsGroup>
       </Item>
+      {isModalOpen && (
+        <Modal>
+          <DeletePromt
+            deleteHorse={() => removeHorse(horse)}
+            closeModal={() => setModalOpen(false)}
+          />
+        </Modal>
+      )}
     </>
   );
 };

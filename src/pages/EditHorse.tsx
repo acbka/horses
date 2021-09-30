@@ -7,7 +7,7 @@ import { getHorseById } from "../api/requests/getHorseById";
 import { updateHorse } from "../api/requests/updateHorse";
 import { horseIdInterface, horseInterface } from "../common/horseInterfaces";
 import Button from "../components/Button";
-import Alarm from "../components/Alarm";
+import Modal from "../components/Modal";
 import InputForm from "../components/InputForm";
 import {
   Wrapper,
@@ -16,6 +16,7 @@ import {
   ButtonsGroup,
 } from "../common/styles";
 import Spinner from "../components/Spinner";
+import Alarm from "../common/Alarm";
 
 type Params = {
   id: string;
@@ -30,7 +31,7 @@ const EditHorse = () => {
   const [currentHorse, setCurrentHorse] = useState<
     horseIdInterface | horseInterface
   >(horse);
-  const [isAlarmOpen, setIsAlarmOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     dispatch(getHorseById({ id }));
@@ -44,7 +45,7 @@ const EditHorse = () => {
       ? dispatch(
           updateHorse({ ...horse, horse: currentHorse as horseIdInterface })
         )
-      : setIsAlarmOpen(true);
+      : setIsModalOpen(true);
     history.push(`/horse/${horse.id}`);
   };
 
@@ -52,7 +53,11 @@ const EditHorse = () => {
 
   return (
     <Wrapper>
-      {isAlarmOpen && <Alarm setIsOpen={() => setIsAlarmOpen(false)} />}
+      {isModalOpen && (
+        <Modal>
+          <Alarm setIsOpen={() => setIsModalOpen(false)} />
+        </Modal>
+      )}
       {isLoading ? (
         <Spinner />
       ) : (
