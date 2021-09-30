@@ -13,10 +13,10 @@ function App() {
     <Router>
       <CompareHorsesPreview />
       <Switch>
-        <Route path="/horse/:id">
+        <Route exact path="/horse/:id">
           <HorseInfo />
         </Route>
-        <Route path="/edit/:id">
+        <Route exact path="/edit/:id">
           <EditHorse />
         </Route>
         <Route path="/addHorse">
@@ -25,13 +25,12 @@ function App() {
         <Route path="/compareHorses">
           <CompareHorses />
         </Route>
-        <Route path="/">
+        <Route exact path="/">
           <HomePage />
-           </Route>
-           <Route path="*">
-            <NotFoundPage />
-          </Route>
-          {/* <Route component={() => <div>404 Not found </div>} /> */}
+        </Route>
+        <Route path="*">
+          <NotFoundPage />
+        </Route>
       </Switch>
     </Router>
   );
