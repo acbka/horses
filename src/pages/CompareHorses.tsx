@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "@emotion/styled/macro";
 import { useSelector } from "react-redux";
 import { selectCompareHorses } from "../api/selectors";
@@ -26,9 +26,14 @@ const CompareHorses = () => {
     history.push("/");
   };
 
+  useEffect(() => {
+    if (compareHorses.length === 0) history.push("/");
+  }, [compareHorses, history]);
+
   return (
     <Wrapper>
       <Section>
+        <h2>Compare horses</h2>
         <List>
           <Item>
             <span>Name: </span>
