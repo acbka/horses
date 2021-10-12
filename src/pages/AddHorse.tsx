@@ -46,7 +46,7 @@ const AddHorse = () => {
         </Modal>
       )}
       <Section>
-        <InputForm setNewHorse={setHorse} />
+        <InputForm isEdit={false} setNewHorse={setHorse} />
         <ButtonsSection>
           <ButtonsGroup>
             <Button title="Create" handleClick={createHorse} />

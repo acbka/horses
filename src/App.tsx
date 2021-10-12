@@ -24,7 +24,7 @@ function App() {
         <Route path="/compareHorses">
           <CompareHorses />
         </Route>
-        <Route path="/">
+        <Route exact path="/">
           <HomePage />
         </Route>
       </Switch>

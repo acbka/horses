@@ -1,5 +1,5 @@
 export const horseBreeds = [
-  "American Quarter Horse",
+  "American Quarter",
   "Arabian",
   "Thoroughbred",
   "Warmblood",

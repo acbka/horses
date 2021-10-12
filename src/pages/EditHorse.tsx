@@ -62,7 +62,11 @@ const EditHorse = () => {
         <Spinner />
       ) : (
         <Section>
-          <InputForm initialHorse={horse} setNewHorse={setCurrentHorse} />
+          <InputForm
+            isEdit={true}
+            initialHorse={horse}
+            setNewHorse={setCurrentHorse}
+          />
           <ButtonsSection>
             <ButtonsGroup>
               <Button
