@@ -41,6 +41,11 @@ const CompareHorses = () => {
             <span>{compareHorses[1]?.name}</span>
           </Item>
           <Item>
+            <span>Breed: </span>
+            <span> {compareHorses[0]?.breed}</span>
+            <span>{compareHorses[1]?.breed}</span>
+          </Item>
+          <Item>
             <span>Favourite Food: </span>
             <span> {compareHorses[0]?.profile.favouriteFood}</span>
             <span>{compareHorses[1]?.profile.favouriteFood}</span>
