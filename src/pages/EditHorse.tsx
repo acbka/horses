@@ -16,7 +16,7 @@ import {
   ButtonsGroup,
 } from "../common/styles";
 import Spinner from "../components/Spinner";
-import Alarm from "../common/Alarm";
+import Alarm from "../components/Alarm";
 
 type Params = {
   id: string;

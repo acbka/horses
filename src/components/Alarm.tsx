@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled/macro";
-import Button from "../components/Button";
+import Button from "./Button";
 
 type AlarmPropsType = {
   setIsOpen: () => void;

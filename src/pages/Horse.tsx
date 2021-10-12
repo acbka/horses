@@ -10,7 +10,7 @@ import SelectIcon from "../components/icons/SelectIcon";
 import EditIcon from "../components/icons/EditIcon";
 import DeleteIcon from "../components/icons/DeleteIcon";
 import Modal from "../components/Modal";
-import DeletePromt from "../common/DeletePromt";
+import DeletePromt from "../components/DeletePromt";
 
 type HorsePropsType = {
   horse: horseIdInterface;

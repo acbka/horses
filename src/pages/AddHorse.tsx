@@ -15,7 +15,7 @@ import {
 } from "../common/styles";
 import { horseInterface } from "../common/horseInterfaces";
 import { setPage } from "../api/slices/pageSlice";
-import Alarm from "../common/Alarm";
+import Alarm from "../components/Alarm";
 
 const AddHorse = () => {
   const dispatch = useAppDispatch();
