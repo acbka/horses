@@ -12,6 +12,7 @@ const InputForm = ({ initialHorse, setNewHorse }: InputFormPropsType) => {
   const [horse, setHorse] = useState<horseInterface | horseIdInterface>(
     initialHorse || {
       name: "",
+      breed: "",
       profile: {
         favouriteFood: "",
         physical: {

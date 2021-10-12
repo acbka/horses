@@ -51,6 +51,10 @@ const HorseInfo = () => {
               {horse.name}
             </Item>
             <Item>
+              <span>Breed: </span>
+              {horse.breed}
+            </Item>
+            <Item>
               <span>Favourite Food: </span>
               {horse.profile.favouriteFood}
             </Item>

@@ -1,5 +1,6 @@
 export interface horseInterface {
   name: string;
+  breed: string;
   profile: {
     favouriteFood: string;
     physical: {
