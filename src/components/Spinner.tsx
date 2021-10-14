@@ -86,7 +86,7 @@ const Spin = styled.div`
   }
 `;
 
-const Spinner1 = () => {
+const Spinner = () => {
   return (
     <Spin>
       <div></div>
@@ -101,4 +101,4 @@ const Spinner1 = () => {
   );
 };
 
-export default Spinner1;
+export default Spinner;

@@ -6,6 +6,7 @@ import { addHorseToCompare } from "../api/slices/horsesSlice";
 import { selectHorse, selectCompareHorses } from "../api/selectors";
 import { getHorseById } from "../api/requests/getHorseById";
 import Button from "../components/Button";
+import Spinner from "../components/Spinner";
 import {
   Wrapper,
   Section,
@@ -13,7 +14,6 @@ import {
   ButtonsSection,
   ButtonsGroup,
 } from "../common/styles";
-import Spinner from "../components/Spinner";
 
 type Params = {
   id: string;
