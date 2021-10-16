@@ -25,16 +25,20 @@ const AddHorse = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const createHorse = () => {
-    horse?.name &&
-    horse?.profile.favouriteFood &&
-    horse?.profile.physical.height &&
-    horse?.profile.physical.weight
-      ? dispatch(addHorse({ horse })).then(() => history.goBack())
-      : setIsModalOpen(true);
-    if (Math.ceil((horses.length + 1) / 5) > Math.ceil(horses.length / 5)) {
-      dispatch(setPage(Math.ceil((horses.length + 1) / 5)));
+    if (
+      horse?.name &&
+      horse?.profile.favouriteFood &&
+      horse?.profile.physical.height &&
+      horse?.profile.physical.weight
+    ) {
+      dispatch(addHorse({ horse })).then(() => history.goBack());
+      if (Math.ceil((horses.length + 1) / 5) > Math.ceil(horses.length / 5)) {
+        dispatch(setPage(Math.ceil((horses.length + 1) / 5)));
+      } else {
+        dispatch(setPage(Math.ceil(horses.length / 5)));
+      }
     } else {
-      dispatch(setPage(Math.ceil(horses.length / 5)));
+      setIsModalOpen(true);
     }
   };
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled/macro";
 import { useAppDispatch } from "../api/store";
 import { useSelector } from "react-redux";
