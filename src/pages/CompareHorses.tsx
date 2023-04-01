@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "@emotion/styled/macro";
 import { useSelector } from "react-redux";
-import { selectCompareHorses } from "../api/selectors";
+import { selectCompareHorses } from "../store/selectors";
 import { useHistory } from "react-router";
 import Button from "../components/Button";
 import { Wrapper, Section, List } from "../common/styles";

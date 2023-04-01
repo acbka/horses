@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled/macro";
 import { useSelector } from "react-redux";
-import { useAppDispatch } from "../api/store";
-import { removeHorseFromCompare } from "../api/slices/horsesSlice";
-import { selectCompareHorses } from "../api/selectors";
+import { useAppDispatch } from "../store/store";
+import { removeHorseFromCompare } from "../store/slices/horsesSlice";
+import { selectCompareHorses } from "../store/selectors";
 import { useHistory } from "react-router";
 import Button from "../components/Button";
 

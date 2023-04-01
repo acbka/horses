@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled/macro";
-import { useAppDispatch } from "../api/store";
+import { useAppDispatch } from "../store/store";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import {
   selectHorses,
   selectIsHorsesLoading,
   selectPage,
-} from "../api/selectors";
-import { addHorseToCompare } from "../api/slices/horsesSlice";
-import { setPage } from "../api/slices/pageSlice";
-import { getHorses } from "../api/requests/getHorses";
-import { deleteHorse } from "../api/requests/deleteHorse";
+} from "../store/selectors";
+import { addHorseToCompare } from "../store/slices/horsesSlice";
+import { setPage } from "../store/slices/pageSlice";
+import { getHorses } from "../store/requests/getHorses";
+import { deleteHorse } from "../store/requests/deleteHorse";
 import Horse from "./Horse";
 import Button from "../components/Button";
 import { horseIdInterface } from "../common/horseInterfaces";

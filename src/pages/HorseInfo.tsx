@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import styled from "@emotion/styled/macro";
 import { useParams, useHistory } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
-import { addHorseToCompare } from "../api/slices/horsesSlice";
-import { selectHorse, selectCompareHorses } from "../api/selectors";
-import { getHorseById } from "../api/requests/getHorseById";
+import { addHorseToCompare } from "../store/slices/horsesSlice";
+import { selectHorse, selectCompareHorses } from "../store/selectors";
+import { getHorseById } from "../store/requests/getHorseById";
 import Button from "../components/Button";
 import Spinner from "../components/Spinner";
 import {

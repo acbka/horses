@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled/macro";
-import { horseIdInterface } from "../common/horseInterfaces";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
-import { selectCompareHorses } from "../api/selectors";
+import { horseIdInterface } from "../common/horseInterfaces";
+import { selectCompareHorses } from "../store/selectors";
 import IconButton from "../components/IconButton";
 import SelectIcon from "../components/icons/SelectIcon";
 import EditIcon from "../components/icons/EditIcon";

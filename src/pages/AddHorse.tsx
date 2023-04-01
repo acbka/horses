@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
-import { useAppDispatch } from "../api/store";
+import { useAppDispatch } from "../store/store";
 import { useSelector } from "react-redux";
-import { selectHorses } from "../api/selectors";
-import { addHorse } from "../api/requests/addHorse";
+import { selectHorses } from "../store/selectors";
+import { addHorse } from "../store/requests/addHorse";
 import Button from "../components/Button";
 import Modal from "../components/Modal";
 import InputForm from "../components/InputForm";
@@ -14,7 +14,7 @@ import {
   ButtonsSection,
 } from "../common/styles";
 import { horseInterface } from "../common/horseInterfaces";
-import { setPage } from "../api/slices/pageSlice";
+import { setPage } from "../store/slices/pageSlice";
 import Alarm from "../components/Alarm";
 
 const AddHorse = () => {

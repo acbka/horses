@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
-import { addHorseToCompare } from "../api/slices/horsesSlice";
-import { selectHorse, selectCompareHorses } from "../api/selectors";
-import { getHorseById } from "../api/requests/getHorseById";
-import { updateHorse } from "../api/requests/updateHorse";
+import { addHorseToCompare } from "../store/slices/horsesSlice";
+import { selectHorse, selectCompareHorses } from "../store/selectors";
+import { getHorseById } from "../store/requests/getHorseById";
+import { updateHorse } from "../store/requests/updateHorse";
 import { horseIdInterface, horseInterface } from "../common/horseInterfaces";
 import Button from "../components/Button";
 import Modal from "../components/Modal";
