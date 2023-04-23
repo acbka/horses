@@ -5,15 +5,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { addHorseToCompare } from "../store/slices/horsesSlice";
 import { selectHorse, selectCompareHorses } from "../store/selectors";
 import { getHorseById } from "../store/requests/getHorseById";
+import {
+  ButtonsGroup,
+  ButtonsSection,
+  List,
+  Section,
+  Wrapper,
+} from "../common/styles";
 import Button from "../components/Button";
 import Spinner from "../components/Spinner";
-import {
-  Wrapper,
-  Section,
-  List,
-  ButtonsSection,
-  ButtonsGroup,
-} from "../common/styles";
 
 type Params = {
   id: string;
@@ -31,7 +31,7 @@ const HorseInfo = () => {
   const { id } = useParams<Params>();
 
   useEffect(() => {
-    dispatch(getHorseById({ id }));
+    dispatch(getHorseById(id));
   }, [dispatch, id]);
 
   const editHorse = () => {
@@ -41,61 +41,65 @@ const HorseInfo = () => {
 
   return (
     <Wrapper>
-      {isLoading ? (
-        <Spinner />
-      ) : (
-        <Section>
-          <List>
-            <Item>
-              <span>Name: </span>
-              {horse.name}
-            </Item>
-            <Item>
-              <span>Breed: </span>
-              {horse.breed}
-            </Item>
-            <Item>
-              <span>Favourite Food: </span>
-              {horse.profile.favouriteFood}
-            </Item>
-            <Item>
-              <span>Height: </span>
-              {horse.profile.physical.height}
-            </Item>
-            <Item>
-              <span>Weight: </span>
-              {horse.profile.physical.weight}
-            </Item>
-          </List>
-          <ButtonsSection>
-            <ButtonsGroup>
+      <Section>
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <>
+            <List>
+              <Item>
+                <span>Name: </span>
+                {horse.name}
+              </Item>
+              <Item>
+                <span>Breed: </span>
+                {horse.breed}
+              </Item>
+              <Item>
+                <span>Favourite Food: </span>
+                {horse.profile.favouriteFood}
+              </Item>
+              <Item>
+                <span>Height: </span>
+                {horse.profile.physical.height}
+              </Item>
+              <Item>
+                <span>Weight: </span>
+                {horse.profile.physical.weight}
+              </Item>
+            </List>
+            <ButtonsSection>
+              <ButtonsGroup>
+                <Button
+                  title="Edit"
+                  handleClick={editHorse}
+                  disabled={
+                    compareHorses.findIndex((item) => item.id === horse.id) !==
+                    -1
+                  }
+                />
+                <Button
+                  title="Select"
+                  handleClick={() => {
+                    dispatch(addHorseToCompare(horse));
+                  }}
+                  disabled={
+                    compareHorses.length === 2 ||
+                    compareHorses.findIndex((item) => item.id === horse.id) !==
+                      -1
+                  }
+                />
+              </ButtonsGroup>
               <Button
-                title="Edit"
-                handleClick={editHorse}
-                disabled={
-                  compareHorses.findIndex((item) => item.id === horse.id) !== -1
-                }
-              />
-              <Button
-                title="Select"
+                title="Back"
                 handleClick={() => {
-                  dispatch(addHorseToCompare(horse));
+                  history.push("/");
                 }}
-                disabled={
-                  compareHorses.length === 2 ||
-                  compareHorses.findIndex((item) => item.id === horse.id) !== -1
-                }
               />
-            </ButtonsGroup>
-            <Button
-              title="Back"
-              handleClick={() => {
-                history.push("/");
-              }}
-            />
-          </ButtonsSection>
-        </Section>
-      )}
+            </ButtonsSection>
+          </>
+        )}
+      </Section>
     </Wrapper>
   );
 };

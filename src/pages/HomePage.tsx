@@ -1,28 +1,27 @@
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled/macro";
-import { useAppDispatch } from "../store/store";
-import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
+import { useSelector } from "react-redux";
+import { useAppDispatch } from "../store/store";
 import {
-  selectHorses,
   selectIsHorsesLoading,
+  selectHorses,
   selectPage,
 } from "../store/selectors";
 import { addHorseToCompare } from "../store/slices/horsesSlice";
 import { setPage } from "../store/slices/pageSlice";
-import { getHorses } from "../store/requests/getHorses";
 import { deleteHorse } from "../store/requests/deleteHorse";
-import Horse from "./Horse";
-import Button from "../components/Button";
-import { horseIdInterface } from "../common/horseInterfaces";
-import Spinner from "../components/Spinner";
+import { HorseIdInterface } from "../common/types";
 import {
-  Wrapper,
-  List,
   ButtonsGroup,
-  Section,
   ButtonsSection,
+  List,
+  Section,
+  Wrapper,
 } from "../common/styles";
+import Button from "../components/Button";
+import Horse from "../components/Horse";
+import Spinner from "../components/Spinner";
 
 const AddButton = styled(Button)`
   height: 40px;
@@ -30,29 +29,27 @@ const AddButton = styled(Button)`
 
 const HomePage = () => {
   const horsesPerPage = 5;
-  const [pages, setPages] = useState(1);
-  const [horsesOnPage, setHorsesOnPage] = useState<horseIdInterface[]>();
   const dispatch = useAppDispatch();
+  const [pages, setPages] = useState(1);
+  const [horsesOnPage, setHorsesOnPage] = useState<HorseIdInterface[]>();
   const horses = useSelector(selectHorses);
   const page = useSelector(selectPage);
   const isHorsesLoading = useSelector(selectIsHorsesLoading);
   const history = useHistory();
 
   useEffect(() => {
-    dispatch(getHorses()).then(() =>
-      setPages(Math.ceil(horses.length / horsesPerPage))
-    );
+    setPages(Math.ceil(horses.length / horsesPerPage));
   }, [dispatch, horses.length]);
 
   useEffect(() => {
-    const horsesArray: horseIdInterface[] = [...horses].splice(
+    const horsesArray: HorseIdInterface[] = [...horses].splice(
       (page - 1) * horsesPerPage,
       horsesPerPage
     );
     setHorsesOnPage(horsesArray);
   }, [horses, page]);
 
-  const createComparableArray = (value: horseIdInterface) => {
+  const createComparableArray = (value: HorseIdInterface) => {
     dispatch(addHorseToCompare(value));
   };
 
@@ -60,7 +57,7 @@ const HomePage = () => {
     history.push("/AddHorse");
   };
 
-  const removeHorse = (horse: horseIdInterface) => {
+  const removeHorse = (horse: HorseIdInterface) => {
     dispatch(deleteHorse({ horse })).then(() =>
       dispatch(setPage(Math.ceil((horses.length - 1) / horsesPerPage)))
     );

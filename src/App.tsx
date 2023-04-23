@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Switch, Route, HashRouter } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import HorseInfo from "./pages/HorseInfo";
+import { useAppDispatch } from "./store/store";
+import { getHorses } from "./store/requests/getHorses";
+import CompareHorsesPreview from "./components/CompareHorsesPreview";
 import AddHorse from "./pages/AddHorse";
-import CompareHorsesPreview from "./pages/CompareHorsesPreview";
 import CompareHorses from "./pages/CompareHorses";
 import EditHorse from "./pages/EditHorse";
+import HomePage from "./pages/HomePage";
+import HorseInfo from "./pages/HorseInfo";
 
 function App() {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getHorses());
+  }, [dispatch]);
+
   return (
     <HashRouter>
       <CompareHorsesPreview />

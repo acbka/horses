@@ -1,12 +1,5 @@
+import React from "react";
 import styled from "@emotion/styled/macro";
-
-type ButtonPropsType = {
-  title: string;
-  disabled?: boolean;
-  children?: React.ReactNode;
-  className?: string;
-  handleClick: () => void;
-};
 
 const StyledButton = styled.button`
   width: 100%;
@@ -34,6 +27,14 @@ const StyledButton = styled.button`
     background: var(--color-second);
   }
 `;
+
+type ButtonPropsType = {
+  title: string;
+  disabled?: boolean;
+  children?: React.ReactNode;
+  className?: string;
+  handleClick: () => void;
+};
 
 const Button = ({
   title,

@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "@emotion/styled/macro";
+import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../store/store";
-import { removeHorseFromCompare } from "../store/slices/horsesSlice";
 import { selectCompareHorses } from "../store/selectors";
-import { useHistory } from "react-router";
-import Button from "../components/Button";
+import { removeHorseFromCompare } from "../store/slices/horsesSlice";
+import Button from "./Button";
 
 const Wrapper = styled.div`
   position: fixed;
@@ -16,14 +16,17 @@ const Wrapper = styled.div`
   box-shadow: 0 0.6em 1em 0.35em rgba(0, 0, 0, 0.17);
   padding: 20px;
 `;
+
 const StyledDiv = styled.div`
   margin: 10px 0;
 `;
+
 const Item = styled.div`
   display: flex;
   justify-content: space-between;
   padding-bottom: 15px;
 `;
+
 const StyledButton = styled(Button)`
   margin-left: 35px;
   width: 60px;
@@ -41,7 +44,7 @@ const CompareHorsesPreview = () => {
 
   const horsesList = compareHorses.map((horse, index) => (
     <Item key={index}>
-      {horse.name}{" "}
+      {horse.name}
       <StyledButton title="Remove" handleClick={() => removeHorse(horse.id)} />
     </Item>
   ));

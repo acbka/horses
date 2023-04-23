@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import Input from "../components/Input";
-import { horseInterface, horseIdInterface } from "../common/horseInterfaces";
+import { HorseInterface, HorseIdInterface } from "../common/types";
 import { List } from "../common/styles";
+import Input from "./Input";
 import Select from "./Select";
 
 type InputFormPropsType = {
   isEdit: boolean;
-  initialHorse?: horseIdInterface;
-  setNewHorse: (arg: horseInterface | horseIdInterface) => void;
+  initialHorse?: HorseIdInterface;
+  setNewHorse: (arg: HorseInterface | HorseIdInterface) => void;
 };
 
 const InputForm = ({
@@ -15,7 +15,7 @@ const InputForm = ({
   initialHorse,
   setNewHorse,
 }: InputFormPropsType) => {
-  const [horse, setHorse] = useState<horseInterface | horseIdInterface>(
+  const [horse, setHorse] = useState<HorseInterface | HorseIdInterface>(
     initialHorse || {
       name: "",
       breed: "",

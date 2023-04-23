@@ -1,12 +1,12 @@
 export const horseBreeds = [
   "American Quarter",
-  "Arabian",
-  "Thoroughbred",
-  "Warmblood",
-  "Morgan",
+  "Andalusian",
   "Appaloosa",
+  "Arabian",
+  "Morgan",
+  "Paint",
   "Pony",
   "Tennessee Walker",
-  "Paint",
-  "Andalusian",
+  "Thoroughbred",
+  "Warmblood",
 ];

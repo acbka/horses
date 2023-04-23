@@ -1,18 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit";
-import horsesSlice from "./slices/horsesSlice";
-import horseSlice from "./slices/horseSlice";
-import { horseIdInterface } from "../common/horseInterfaces";
 import { useDispatch } from "react-redux";
-import pageSlice from "./slices/pageSlice";
+import horsesReducer from "./slices/horsesSlice";
+import horseReducer from "./slices/horseSlice";
+import pageReducer from "./slices/pageSlice";
+import { HorseIdInterface } from "../common/types";
 
 export type HorseStateType = {
   horses: {
-    horses: horseIdInterface[];
+    horses: HorseIdInterface[];
     isLoading: boolean;
-    compareHorses: horseIdInterface[];
+    compareHorses: HorseIdInterface[];
   };
   horse: {
-    horse: horseIdInterface;
+    horse: HorseIdInterface;
     isLoading: boolean;
   };
   pages: {
@@ -22,9 +22,9 @@ export type HorseStateType = {
 
 const store = configureStore({
   reducer: {
-    horses: horsesSlice,
-    horse: horseSlice,
-    pages: pageSlice,
+    horses: horsesReducer,
+    horse: horseReducer,
+    pages: pageReducer,
   },
 });
 export type AppDispatch = typeof store.dispatch;

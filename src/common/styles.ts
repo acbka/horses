@@ -7,8 +7,8 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
 `;
+
 export const Section = styled.div`
   min-height: 296px;
   height: 100%;
@@ -36,6 +36,7 @@ export const ButtonsSection = styled.div`
   justify-content: center;
   align-items: space-between;
 `;
+
 export const ButtonsGroup = styled.div`
   width: 100%;
   display: flex;

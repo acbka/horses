@@ -2,11 +2,6 @@ import React, { useState, ChangeEvent } from "react";
 import styled from "@emotion/styled/macro";
 import { horseBreeds } from "../common/horseBreeds";
 
-type SelectPropsType = {
-  name: string;
-  handleChange: (arg: string) => void;
-};
-
 const Wrapper = styled.div`
   width: 100%;
   display: flex;
@@ -24,6 +19,11 @@ const StyledSelect = styled.select`
   background: transparent;
   font-size: 15px;
 `;
+
+type SelectPropsType = {
+  name: string;
+  handleChange: (arg: string) => void;
+};
 
 const Select = ({ name, handleChange }: SelectPropsType) => {
   const [breed, setbreed] = useState(horseBreeds[0]);

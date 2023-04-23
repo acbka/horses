@@ -1,10 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled/macro";
 
-type ModalPropsType = {
-  children?: React.ReactNode;
-};
-
 const Wrapper = styled.div`
   position: fixed;
   top: 50px;
@@ -20,6 +16,7 @@ const Wrapper = styled.div`
   padding: 20px;
   z-index: 10;
 `;
+
 const Layout = styled.div`
   position: fixed;
   top: 0;
@@ -29,6 +26,10 @@ const Layout = styled.div`
   background: rgb(255, 255, 255, 0.5);
   z-index: 5;
 `;
+
+type ModalPropsType = {
+  children?: React.ReactNode;
+};
 
 const Modal = ({ children }: ModalPropsType) => {
   return (

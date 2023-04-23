@@ -1,4 +1,4 @@
-export interface horseInterface {
+export interface HorseInterface {
   name: string;
   breed: string;
   profile: {
@@ -10,6 +10,6 @@ export interface horseInterface {
   };
 }
 
-export interface horseIdInterface extends horseInterface {
+export interface HorseIdInterface extends HorseInterface {
   id: string;
 }

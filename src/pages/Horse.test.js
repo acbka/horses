@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
-import Horse from "./Horse";
+import Horse from "../components/Horse";
 describe("HorseInfo", () => {
   test("renders with id", () => {
     render(

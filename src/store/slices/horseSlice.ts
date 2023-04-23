@@ -2,10 +2,16 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getHorseById } from "../requests/getHorseById";
 import { addHorse } from "../requests/addHorse";
 import { updateHorse } from "../requests/updateHorse";
+import { HorseIdInterface } from "../../common/types";
 
-const initialState = {
+type InitialStateType = {
+  horse: HorseIdInterface;
+  isLoading: boolean;
+};
+
+const initialState: InitialStateType = {
+  horse: {} as HorseIdInterface,
   isLoading: false,
-  horse: {},
 };
 
 const horseSlice = createSlice({
@@ -17,8 +23,8 @@ const horseSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(getHorseById.fulfilled, (state, { payload }) => {
-      state.isLoading = false;
       state.horse = payload;
+      state.isLoading = false;
     });
     builder.addCase(addHorse.fulfilled, (state, { payload }) => {
       state.horse = payload;

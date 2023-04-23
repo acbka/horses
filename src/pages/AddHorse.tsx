@@ -1,27 +1,27 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
-import { useAppDispatch } from "../store/store";
 import { useSelector } from "react-redux";
+import { useAppDispatch } from "../store/store";
 import { selectHorses } from "../store/selectors";
 import { addHorse } from "../store/requests/addHorse";
-import Button from "../components/Button";
-import Modal from "../components/Modal";
-import InputForm from "../components/InputForm";
-import {
-  Wrapper,
-  ButtonsGroup,
-  Section,
-  ButtonsSection,
-} from "../common/styles";
-import { horseInterface } from "../common/horseInterfaces";
 import { setPage } from "../store/slices/pageSlice";
+import { HorseInterface } from "../common/types";
+import {
+  ButtonsGroup,
+  ButtonsSection,
+  Section,
+  Wrapper,
+} from "../common/styles";
+import Button from "../components/Button";
 import Alarm from "../components/Alarm";
+import InputForm from "../components/InputForm";
+import Modal from "../components/Modal";
 
 const AddHorse = () => {
   const dispatch = useAppDispatch();
   const history = useHistory();
   const horses = useSelector(selectHorses);
-  const [horse, setHorse] = useState<horseInterface>();
+  const [horse, setHorse] = useState<HorseInterface>();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const createHorse = () => {

@@ -1,22 +1,22 @@
-import { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router";
+import React, { useState, useEffect } from "react";
+import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addHorseToCompare } from "../store/slices/horsesSlice";
 import { selectHorse, selectCompareHorses } from "../store/selectors";
 import { getHorseById } from "../store/requests/getHorseById";
 import { updateHorse } from "../store/requests/updateHorse";
-import { horseIdInterface, horseInterface } from "../common/horseInterfaces";
-import Button from "../components/Button";
-import Modal from "../components/Modal";
-import InputForm from "../components/InputForm";
+import { HorseIdInterface, HorseInterface } from "../common/types";
 import {
-  Wrapper,
-  Section,
-  ButtonsSection,
   ButtonsGroup,
+  ButtonsSection,
+  Section,
+  Wrapper,
 } from "../common/styles";
-import Spinner from "../components/Spinner";
 import Alarm from "../components/Alarm";
+import Button from "../components/Button";
+import InputForm from "../components/InputForm";
+import Modal from "../components/Modal";
+import Spinner from "../components/Spinner";
 
 type Params = {
   id: string;
@@ -29,12 +29,12 @@ const EditHorse = () => {
   const compareHorses = useSelector(selectCompareHorses);
   const { id } = useParams<Params>();
   const [currentHorse, setCurrentHorse] = useState<
-    horseIdInterface | horseInterface
+    HorseIdInterface | HorseInterface
   >(horse);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    dispatch(getHorseById({ id }));
+    dispatch(getHorseById(id));
   }, [dispatch, id]);
 
   const updateCurrentHorse = () => {
@@ -43,7 +43,7 @@ const EditHorse = () => {
     currentHorse.profile.physical.height &&
     currentHorse.profile.physical.weight
       ? dispatch(
-          updateHorse({ ...horse, horse: currentHorse as horseIdInterface })
+          updateHorse({ ...horse, horse: currentHorse as HorseIdInterface })
         )
       : setIsModalOpen(true);
     history.push(`/horse/${horse.id}`);
@@ -53,48 +53,52 @@ const EditHorse = () => {
 
   return (
     <Wrapper>
+      <Section>
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <>
+            <InputForm
+              isEdit={true}
+              initialHorse={horse}
+              setNewHorse={setCurrentHorse}
+            />
+            <ButtonsSection>
+              <ButtonsGroup>
+                <Button
+                  title="Save"
+                  handleClick={updateCurrentHorse}
+                  disabled={
+                    compareHorses.findIndex((item) => item.id === horse.id) !==
+                    -1
+                  }
+                />
+                <Button
+                  title="Select"
+                  handleClick={() => {
+                    dispatch(addHorseToCompare(horse));
+                  }}
+                  disabled={
+                    compareHorses.length === 2 ||
+                    compareHorses.findIndex((item) => item.id === horse.id) !==
+                      -1
+                  }
+                />
+              </ButtonsGroup>
+              <Button
+                title="Back"
+                handleClick={() => {
+                  history.push("/");
+                }}
+              />
+            </ButtonsSection>
+          </>
+        )}
+      </Section>
       {isModalOpen && (
         <Modal>
           <Alarm setIsOpen={() => setIsModalOpen(false)} />
         </Modal>
-      )}
-      {isLoading ? (
-        <Spinner />
-      ) : (
-        <Section>
-          <InputForm
-            isEdit={true}
-            initialHorse={horse}
-            setNewHorse={setCurrentHorse}
-          />
-          <ButtonsSection>
-            <ButtonsGroup>
-              <Button
-                title="Save"
-                handleClick={updateCurrentHorse}
-                disabled={
-                  compareHorses.findIndex((item) => item.id === horse.id) !== -1
-                }
-              />
-              <Button
-                title="Select"
-                handleClick={() => {
-                  dispatch(addHorseToCompare(horse));
-                }}
-                disabled={
-                  compareHorses.length === 2 ||
-                  compareHorses.findIndex((item) => item.id === horse.id) !== -1
-                }
-              />
-            </ButtonsGroup>
-            <Button
-              title="Back"
-              handleClick={() => {
-                history.push("/");
-              }}
-            />
-          </ButtonsSection>
-        </Section>
       )}
     </Wrapper>
   );

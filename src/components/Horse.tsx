@@ -3,20 +3,14 @@ import styled from "@emotion/styled/macro";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
-import { horseIdInterface } from "../common/horseInterfaces";
 import { selectCompareHorses } from "../store/selectors";
-import IconButton from "../components/IconButton";
-import SelectIcon from "../components/icons/SelectIcon";
-import EditIcon from "../components/icons/EditIcon";
-import DeleteIcon from "../components/icons/DeleteIcon";
-import Modal from "../components/Modal";
-import DeletePromt from "../components/DeletePromt";
-
-type HorsePropsType = {
-  horse: horseIdInterface;
-  selectHorse: (arg: horseIdInterface) => void;
-  removeHorse: (arg: horseIdInterface) => void;
-};
+import { HorseIdInterface } from "../common/types";
+import DeletePromt from "./DeletePromt";
+import IconButton from "./IconButton";
+import Modal from "./Modal";
+import DeleteIcon from "../icons/DeleteIcon";
+import EditIcon from "../icons/EditIcon";
+import SelectIcon from "../icons/SelectIcon";
 
 const Item = styled.div`
   width: 100%;
@@ -25,12 +19,19 @@ const Item = styled.div`
   padding: 10px;
   position: relative;
 `;
+
 const ButtonsGroup = styled.div`
   display: flex;
   align-items: center;
   border: 1px solid var(--color-main);
   border-radius: 4px;
 `;
+
+type HorsePropsType = {
+  horse: HorseIdInterface;
+  selectHorse: (arg: HorseIdInterface) => void;
+  removeHorse: (arg: HorseIdInterface) => void;
+};
 
 const Horse = ({ horse, selectHorse, removeHorse }: HorsePropsType) => {
   const compareHorses = useSelector(selectCompareHorses);

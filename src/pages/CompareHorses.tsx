@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import styled from "@emotion/styled/macro";
+import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
 import { selectCompareHorses } from "../store/selectors";
-import { useHistory } from "react-router";
-import Button from "../components/Button";
 import { Wrapper, Section, List } from "../common/styles";
+import Button from "../components/Button";
 
 const Item = styled.div`
   display: grid;

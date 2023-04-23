@@ -1,9 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { horseByIdUrl } from "../endpoints";
-import { horseIdInterface } from "../../common/horseInterfaces";
+import { HorseIdInterface } from "../../common/types";
 
 type UpdateHorseType = {
-  horse: horseIdInterface;
+  horse: HorseIdInterface;
 };
 
 export const updateHorse = createAsyncThunk(

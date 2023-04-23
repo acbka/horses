@@ -1,22 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getHorses } from "../requests/getHorses";
-import { horseIdInterface } from "../../common/horseInterfaces";
+import { HorseIdInterface } from "../../common/types";
 import { deleteHorse } from "../requests/deleteHorse";
 
-type initialStateType = {
+type InitialStateType = {
+  horses: HorseIdInterface[];
+  compareHorses: HorseIdInterface[];
   isLoading: boolean;
   isSuccess: boolean;
   isError: boolean;
-  horses: horseIdInterface[];
-  compareHorses: horseIdInterface[];
 };
 
-const initialState: initialStateType = {
+const initialState: InitialStateType = {
+  horses: [],
+  compareHorses: [],
   isLoading: false,
   isSuccess: false,
   isError: false,
-  horses: [],
-  compareHorses: [],
 };
 
 const horsesSlice = createSlice({
@@ -24,7 +24,7 @@ const horsesSlice = createSlice({
   initialState,
   reducers: {
     addHorseToCompare: (state, { payload }) => {
-      state.compareHorses.push(payload as horseIdInterface);
+      state.compareHorses.push(payload as HorseIdInterface);
     },
     removeHorseFromCompare: (state, { payload }) => {
       const index = state.compareHorses.findIndex(
