@@ -4,7 +4,6 @@ import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../store/store";
 import {
-  selectIsHorseLoading,
   selectIsHorsesLoading,
   selectHorses,
   selectPage,
@@ -39,7 +38,6 @@ const HomePage = () => {
   const horses = useSelector(selectHorses);
   const page = useSelector(selectPage);
   const isHorsesLoading = useSelector(selectIsHorsesLoading);
-  const isHorseLoading = useSelector(selectIsHorseLoading);
   const history = useHistory();
 
   useEffect(() => {
@@ -74,8 +72,6 @@ const HomePage = () => {
     }
   };
 
-  const isLoading = isHorsesLoading && isHorseLoading;
-
   const horsesList = horsesOnPage?.map((item, index) => (
     <Horse
       key={index}
@@ -88,7 +84,7 @@ const HomePage = () => {
   return (
     <Wrapper>
       <Section>
-        {isLoading ? (
+        {isHorsesLoading ? (
           <Spinner />
         ) : (
           <>
