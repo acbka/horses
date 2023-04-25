@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addHorseToCompare } from "../store/slices/horsesSlice";
-import { selectHorse, selectCompareHorses } from "../store/selectors";
+import {
+  selectCompareHorses,
+  selectHorse,
+  selectIsHorseLoading,
+} from "../store/selectors";
 import { getHorseById } from "../store/requests/getHorseById";
 import { updateHorse } from "../store/requests/updateHorse";
 import { HorseIdInterface, HorseInterface } from "../common/types";
@@ -25,7 +29,8 @@ type Params = {
 const EditHorse = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { horse, isLoading } = useSelector(selectHorse);
+  const horse = useSelector(selectHorse);
+  const isLoading = useSelector(selectIsHorseLoading);
   const compareHorses = useSelector(selectCompareHorses);
   const { id } = useParams<Params>();
   const [currentHorse, setCurrentHorse] = useState<
@@ -97,7 +102,10 @@ const EditHorse = () => {
       </Section>
       {isModalOpen && (
         <Modal>
-          <Alarm setIsOpen={() => setIsModalOpen(false)} />
+          <Alarm
+            message="All fields must be filled!"
+            setIsOpen={() => setIsModalOpen(false)}
+          />
         </Modal>
       )}
     </Wrapper>

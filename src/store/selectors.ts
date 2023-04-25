@@ -5,5 +5,9 @@ export const selectIsHorsesLoading = (state: HorseStateType) =>
   state.horses.isLoading;
 export const selectCompareHorses = (state: HorseStateType) =>
   state.horses.compareHorses;
-export const selectHorse = (state: HorseStateType) => state.horse;
+
+export const selectHorse = (state: HorseStateType) => state.horse.horse;
+export const selectIsHorseLoading = (state: HorseStateType) =>
+  state.horse.isLoading;
+
 export const selectPage = (state: HorseStateType) => state.pages.page;

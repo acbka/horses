@@ -9,12 +9,16 @@ import Button from "./Button";
 
 const Wrapper = styled.div`
   position: fixed;
-  top: 50px;
-  right: 50px;
+  top: 10px;
+  right: 10px;
   background: var(--color-white);
   border-radius: 5px;
   box-shadow: 0 0.6em 1em 0.35em rgba(0, 0, 0, 0.17);
   padding: 20px;
+  @media screen and (min-width: 830px) {
+    top: 50px;
+    right: 50px;
+  }
 `;
 
 const StyledDiv = styled.div`

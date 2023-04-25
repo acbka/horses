@@ -2,13 +2,9 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { horsesUrl } from "../endpoints";
 import { HorseInterface } from "../../common/types";
 
-type AddHorseType = {
-  horse: HorseInterface;
-};
-
 export const addHorse = createAsyncThunk(
   "horse/addHorse",
-  async ({ horse }: AddHorseType) => {
+  async (horse: HorseInterface) => {
     const response = await fetch(horsesUrl, {
       headers: {
         "Content-Type": "application/json",

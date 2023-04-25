@@ -3,7 +3,11 @@ import styled from "@emotion/styled/macro";
 import { useParams, useHistory } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { addHorseToCompare } from "../store/slices/horsesSlice";
-import { selectHorse, selectCompareHorses } from "../store/selectors";
+import {
+  selectCompareHorses,
+  selectHorse,
+  selectIsHorseLoading,
+} from "../store/selectors";
 import { getHorseById } from "../store/requests/getHorseById";
 import {
   ButtonsGroup,
@@ -26,7 +30,8 @@ const Item = styled.div`
 const HorseInfo = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { horse, isLoading } = useSelector(selectHorse);
+  const horse = useSelector(selectHorse);
+  const isLoading = useSelector(selectIsHorseLoading);
   const compareHorses = useSelector(selectCompareHorses);
   const { id } = useParams<Params>();
 

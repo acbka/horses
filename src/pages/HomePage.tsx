@@ -4,11 +4,15 @@ import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../store/store";
 import {
+  selectIsHorseLoading,
   selectIsHorsesLoading,
   selectHorses,
   selectPage,
 } from "../store/selectors";
-import { addHorseToCompare } from "../store/slices/horsesSlice";
+import {
+  addHorseToCompare,
+  removeHorseFromCompare,
+} from "../store/slices/horsesSlice";
 import { setPage } from "../store/slices/pageSlice";
 import { deleteHorse } from "../store/requests/deleteHorse";
 import { HorseIdInterface } from "../common/types";
@@ -35,6 +39,7 @@ const HomePage = () => {
   const horses = useSelector(selectHorses);
   const page = useSelector(selectPage);
   const isHorsesLoading = useSelector(selectIsHorsesLoading);
+  const isHorseLoading = useSelector(selectIsHorseLoading);
   const history = useHistory();
 
   useEffect(() => {
@@ -58,10 +63,18 @@ const HomePage = () => {
   };
 
   const removeHorse = (horse: HorseIdInterface) => {
-    dispatch(deleteHorse({ horse })).then(() =>
-      dispatch(setPage(Math.ceil((horses.length - 1) / horsesPerPage)))
+    dispatch(deleteHorse(horse)).then(() =>
+      dispatch(removeHorseFromCompare(horse.id))
     );
+
+    const numberOfPages = Math.ceil((horses.length - 1) / horsesPerPage);
+
+    if (page > numberOfPages) {
+      dispatch(setPage(Math.ceil(numberOfPages)));
+    }
   };
+
+  const isLoading = isHorsesLoading && isHorseLoading;
 
   const horsesList = horsesOnPage?.map((item, index) => (
     <Horse
@@ -75,22 +88,28 @@ const HomePage = () => {
   return (
     <Wrapper>
       <Section>
-        {isHorsesLoading ? <Spinner /> : <List>{horsesList}</List>}
-        <ButtonsSection>
-          <ButtonsGroup>
-            <Button
-              title={`Preev ${horsesPerPage}`}
-              handleClick={() => dispatch(setPage(page - 1))}
-              disabled={page === 1}
-            />
-            <Button
-              title={`Next ${horsesPerPage}`}
-              handleClick={() => dispatch(setPage(page + 1))}
-              disabled={page === pages}
-            />
-          </ButtonsGroup>
-          <AddButton title="Add horse" handleClick={addNewHorse} />
-        </ButtonsSection>
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <>
+            <List>{horsesList}</List>
+            <ButtonsSection>
+              <ButtonsGroup>
+                <Button
+                  title={`Preev ${horsesPerPage}`}
+                  handleClick={() => dispatch(setPage(page - 1))}
+                  disabled={page === 1}
+                />
+                <Button
+                  title={`Next ${horsesPerPage}`}
+                  handleClick={() => dispatch(setPage(page + 1))}
+                  disabled={page === pages}
+                />
+              </ButtonsGroup>
+              <AddButton title="Add horse" handleClick={addNewHorse} />
+            </ButtonsSection>
+          </>
+        )}
       </Section>
     </Wrapper>
   );

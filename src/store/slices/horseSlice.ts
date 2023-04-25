@@ -26,11 +26,19 @@ const horseSlice = createSlice({
       state.horse = payload;
       state.isLoading = false;
     });
+    builder.addCase(addHorse.pending, (state) => {
+      state.isLoading = true;
+    });
     builder.addCase(addHorse.fulfilled, (state, { payload }) => {
       state.horse = payload;
+      state.isLoading = false;
+    });
+    builder.addCase(updateHorse.pending, (state) => {
+      state.isLoading = true;
     });
     builder.addCase(updateHorse.fulfilled, (state, { payload }) => {
       state.horse = payload;
+      state.isLoading = false;
     });
   },
 });

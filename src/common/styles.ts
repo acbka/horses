@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Section = styled.div`
-  min-height: 296px;
+  min-height: 365px;
   height: 100%;
   min-width: 330px;
   display: flex;
@@ -21,6 +21,10 @@ export const Section = styled.div`
   border-radius: 5px;
   box-shadow: 0 0.6em 1em 0.35em rgba(0, 0, 0, 0.17);
   padding: 20px;
+  margin-top: 30px;
+  @media screen and (min-width: 830px) {
+    margin-top: 0px;
+  }
 `;
 export const List = styled.div`
   display: flex;

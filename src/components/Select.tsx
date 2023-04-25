@@ -26,7 +26,7 @@ type SelectPropsType = {
 };
 
 const Select = ({ name, handleChange }: SelectPropsType) => {
-  const [breed, setbreed] = useState(horseBreeds[0]);
+  const [breed, setBreed] = useState(horseBreeds[0]);
   const optionsList = horseBreeds.map((item, index) => (
     <option key={index} value={item}>
       {item}
@@ -34,7 +34,7 @@ const Select = ({ name, handleChange }: SelectPropsType) => {
   ));
 
   const selectBreed = (e: ChangeEvent<HTMLSelectElement>) => {
-    setbreed(e.target.value);
+    setBreed(e.target.value);
     handleChange(e.target.value);
   };
 

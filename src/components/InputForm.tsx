@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { HorseInterface, HorseIdInterface } from "../common/types";
+import { horseBreeds } from "../common/horseBreeds";
 import { List } from "../common/styles";
 import Input from "./Input";
 import Select from "./Select";
@@ -18,7 +19,7 @@ const InputForm = ({
   const [horse, setHorse] = useState<HorseInterface | HorseIdInterface>(
     initialHorse || {
       name: "",
-      breed: "",
+      breed: horseBreeds[0],
       profile: {
         favouriteFood: "",
         physical: {
