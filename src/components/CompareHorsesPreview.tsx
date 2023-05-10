@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled/macro";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../store/store";
 import { selectCompareHorses } from "../store/selectors";
@@ -38,7 +38,7 @@ const StyledButton = styled(Button)`
 `;
 
 const CompareHorsesPreview = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const compareHorses = useSelector(selectCompareHorses);
 
@@ -65,7 +65,7 @@ const CompareHorsesPreview = () => {
         <Button
           title="Compare"
           disabled={compareHorses.length !== 2}
-          handleClick={() => history.push("/CompareHorses")}
+          handleClick={() => navigate("/CompareHorses")}
         />
       )}
     </Wrapper>

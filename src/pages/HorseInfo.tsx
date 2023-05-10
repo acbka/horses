@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "@emotion/styled/macro";
-import { useParams, useHistory } from "react-router";
+import { useParams } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addHorseToCompare } from "../store/slices/horsesSlice";
 import {
@@ -19,28 +20,23 @@ import {
 import Button from "../components/Button";
 import Spinner from "../components/Spinner";
 
-type Params = {
-  id: string;
-};
-
 const Item = styled.div`
   padding: 10px 0;
 `;
 
 const HorseInfo = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   const horse = useSelector(selectHorse);
   const isLoading = useSelector(selectIsHorseLoading);
   const compareHorses = useSelector(selectCompareHorses);
-  const { id } = useParams<Params>();
+  const { id } = useParams();
 
   useEffect(() => {
-    dispatch(getHorseById(id));
+    dispatch(getHorseById(id as string));
   }, [dispatch, id]);
-
   const editHorse = () => {
-    history.push(`/edit/${horse.id}`);
+    navigate(`/edit/${horse.id}`);
   };
   if (Object.keys(horse).length === 0) return null;
 
@@ -98,7 +94,7 @@ const HorseInfo = () => {
               <Button
                 title="Back"
                 handleClick={() => {
-                  history.push("/");
+                  navigate("/");
                 }}
               />
             </ButtonsSection>

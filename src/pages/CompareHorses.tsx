@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "@emotion/styled/macro";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectCompareHorses } from "../store/selectors";
 import { Wrapper, Section, List } from "../common/styles";
@@ -19,16 +19,16 @@ const BackButton = styled(Button)`
 `;
 
 const CompareHorses = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const compareHorses = useSelector(selectCompareHorses);
 
   const goToMainPage = () => {
-    history.push("/");
+    navigate("/");
   };
 
   useEffect(() => {
-    if (compareHorses.length === 0) history.push("/");
-  }, [compareHorses, history]);
+    if (compareHorses.length === 0) navigate("/");
+  }, [compareHorses, navigate]);
 
   return (
     <Wrapper>

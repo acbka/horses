@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled/macro";
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectCompareHorses } from "../store/selectors";
 import { HorseIdInterface } from "../common/types";
@@ -35,11 +35,11 @@ type HorsePropsType = {
 
 const Horse = ({ horse, selectHorse, removeHorse }: HorsePropsType) => {
   const compareHorses = useSelector(selectCompareHorses);
-  const history = useHistory();
+  const navigate = useNavigate();
   const [isModalOpen, setModalOpen] = useState(false);
 
   const editHorse = () => {
-    history.push(`/edit/${horse.id}`);
+    navigate(`/edit/${horse.id}`);
   };
 
   return (

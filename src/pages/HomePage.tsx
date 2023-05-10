@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled/macro";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../store/store";
 import {
@@ -38,8 +38,7 @@ const HomePage = () => {
   const horses = useSelector(selectHorses);
   const page = useSelector(selectPage);
   const isHorsesLoading = useSelector(selectIsHorsesLoading);
-  const history = useHistory();
-
+  const navigate = useNavigate();
   useEffect(() => {
     setPages(Math.ceil(horses.length / horsesPerPage));
   }, [dispatch, horses.length]);
@@ -57,7 +56,7 @@ const HomePage = () => {
   };
 
   const addNewHorse = () => {
-    history.push("/AddHorse");
+    navigate("/AddHorse");
   };
 
   const removeHorse = (horse: HorseIdInterface) => {

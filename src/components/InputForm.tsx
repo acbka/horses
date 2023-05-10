@@ -47,7 +47,7 @@ const InputForm = ({
       )}
       <Input
         name="Food"
-        initialValue={horse.profile?.favouriteFood}
+        initialValue={horse.profile.favouriteFood}
         handleChange={(value) =>
           setHorse({
             ...horse,

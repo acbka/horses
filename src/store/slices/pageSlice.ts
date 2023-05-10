@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-type InintialStateType = {
+type InitialPageStateType = {
   page: number;
 };
 
-const initialState: InintialStateType = {
+const initialState: InitialPageStateType = {
   page: 1,
 };
 

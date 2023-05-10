@@ -1,0 +1,9 @@
+{
+  "id": "9cec5fa3f824c-988dbf18887e0-6fccd2d75a64-a8499cbe117b-ad5804d5ba54a",
+  "name": "Bucephalus",
+  "breed": "Amsterdam Pony",
+  "profile": {
+    "favouriteFood": "Red and black caviar",
+    "physical": { "height": "195", "weight": "425" }
+  }
+}

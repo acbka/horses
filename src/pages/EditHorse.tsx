@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useAppDispatch } from "../store/store";
 import { addHorseToCompare } from "../store/slices/horsesSlice";
 import {
   selectCompareHorses,
@@ -8,6 +9,7 @@ import {
   selectIsHorseLoading,
 } from "../store/selectors";
 import { getHorseById } from "../store/requests/getHorseById";
+import { getHorses } from "../store/requests/getHorses";
 import { updateHorse } from "../store/requests/updateHorse";
 import { HorseIdInterface, HorseInterface } from "../common/types";
 import {
@@ -22,24 +24,20 @@ import InputForm from "../components/InputForm";
 import Modal from "../components/Modal";
 import Spinner from "../components/Spinner";
 
-type Params = {
-  id: string;
-};
-
 const EditHorse = () => {
-  const dispatch = useDispatch();
-  const history = useHistory();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const horse = useSelector(selectHorse);
   const isLoading = useSelector(selectIsHorseLoading);
   const compareHorses = useSelector(selectCompareHorses);
-  const { id } = useParams<Params>();
+  const { id } = useParams();
   const [currentHorse, setCurrentHorse] = useState<
     HorseIdInterface | HorseInterface
   >(horse);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    dispatch(getHorseById(id));
+    dispatch(getHorseById(id as string));
   }, [dispatch, id]);
 
   const updateCurrentHorse = () => {
@@ -47,11 +45,11 @@ const EditHorse = () => {
     currentHorse.profile.favouriteFood &&
     currentHorse.profile.physical.height &&
     currentHorse.profile.physical.weight
-      ? dispatch(
-          updateHorse({ ...horse, horse: currentHorse as HorseIdInterface })
+      ? dispatch(updateHorse(currentHorse as HorseIdInterface)).then(() =>
+          dispatch(getHorses())
         )
       : setIsModalOpen(true);
-    history.push(`/horse/${horse.id}`);
+    navigate(`/horse/${horse.id}`, { replace: true });
   };
 
   if (Object.keys(horse).length === 0) return null;
@@ -93,7 +91,7 @@ const EditHorse = () => {
               <Button
                 title="Back"
                 handleClick={() => {
-                  history.push("/");
+                  navigate("/");
                 }}
               />
             </ButtonsSection>

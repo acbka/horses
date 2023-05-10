@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Switch, Route, HashRouter } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useAppDispatch } from "./store/store";
 import { getHorses } from "./store/requests/getHorses";
 import CompareHorsesPreview from "./components/CompareHorsesPreview";
@@ -17,26 +17,16 @@ function App() {
   }, [dispatch]);
 
   return (
-    <HashRouter>
+    <BrowserRouter>
       <CompareHorsesPreview />
-      <Switch>
-        <Route path="/horse/:id">
-          <HorseInfo />
-        </Route>
-        <Route path="/edit/:id">
-          <EditHorse />
-        </Route>
-        <Route path="/addHorse">
-          <AddHorse />
-        </Route>
-        <Route path="/compareHorses">
-          <CompareHorses />
-        </Route>
-        <Route exact path="/">
-          <HomePage />
-        </Route>
-      </Switch>
-    </HashRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/horse/:id" element={<HorseInfo />} />
+        <Route path="/edit/:id" element={<EditHorse />} />
+        <Route path="/addHorse" element={<AddHorse />} />
+        <Route path="/compareHorses" element={<CompareHorses />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

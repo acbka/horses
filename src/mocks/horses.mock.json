@@ -1,0 +1,61 @@
+[
+  {
+    "id": "9cec5fa3f824c-988dbf18887e0-6fccd2d75a64-a8499cbe117b-ad5804d5ba54a",
+    "name": "Bucephalus",
+    "breed": "Amsterdam Pony",
+    "profile": {
+      "favouriteFood": "Red and black caviar",
+      "physical": { "height": "195", "weight": "425" }
+    },
+    "horseIndex": 1
+  },
+  {
+    "id": "9cec5fa3f824c-988dbf18887e0-6fccd2d75ae64-a8499cbe117b-ad5804d5ba54a",
+    "name": "Julius Caesar",
+    "breed": "Antelope",
+    "profile": {
+      "favouriteFood": "Ice cream",
+      "physical": { "height": 176, "weight": 800 }
+    },
+    "horseIndex": 2
+  },
+  {
+    "id": "9cec5fa3fe824c-988dbf18887e0-6fccd2d75a64-a8499cbe117b-ad5804d5ba54a",
+    "name": "Verka Serdyuchka",
+    "breed": "Ukranian Pony",
+    "profile": {
+      "favouriteFood": "Chocolate",
+      "physical": { "height": 170, "weight": "60.5" }
+    },
+    "horseIndex": 3
+  },
+  {
+    "id": "cabb26a8-6176-413b-b7cd-4cf6aa82a200",
+    "name": "Indiana",
+    "breed": "Bangalor",
+    "profile": {
+      "favouriteFood": "Salami Finnish",
+      "physical": { "height": 156, "weight": 4563 }
+    },
+    "horseIndex": 11
+  },
+  {
+    "id": "044f6932-784f-4a29-8902-d6f15afaaeb1",
+    "name": "Banana",
+    "breed": "Arabian",
+    "profile": {
+      "favouriteFood": "candy",
+      "physical": { "height": 187, "weight": 459 }
+    },
+    "horseIndex": 638180002265596200
+  },
+  {
+    "id": "ce60fcfe-db98-4f06-87a0-6b2071502211",
+    "name": "Pink Rose",
+    "breed": "American Quarter",
+    "profile": {
+      "favouriteFood": "rose",
+      "physical": { "height": "192", "weight": "612" }
+    }
+  }
+]

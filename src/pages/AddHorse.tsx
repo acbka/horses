@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../store/store";
 import { selectHorses } from "../store/selectors";
@@ -20,7 +20,7 @@ import Modal from "../components/Modal";
 
 const AddHorse = () => {
   const dispatch = useAppDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   const horses = useSelector(selectHorses);
   const [horse, setHorse] = useState<HorseInterface>();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -37,7 +37,7 @@ const AddHorse = () => {
     ) {
       dispatch(addHorse(horse))
         .then(() => dispatch(getHorses()))
-        .then(() => history.goBack());
+        .then(() => navigate(-1));
       if (Math.ceil((horses.length + 1) / 5) > Math.ceil(horses.length / 5)) {
         dispatch(setPage(Math.ceil((horses.length + 1) / 5)));
       } else {
@@ -67,7 +67,7 @@ const AddHorse = () => {
         <ButtonsSection>
           <ButtonsGroup>
             <Button title="Create" handleClick={createHorse} />
-            <Button title="Cancel" handleClick={() => history.goBack()} />
+            <Button title="Cancel" handleClick={() => navigate(-1)} />
           </ButtonsGroup>
         </ButtonsSection>
       </Section>

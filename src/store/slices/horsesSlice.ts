@@ -3,7 +3,7 @@ import { getHorses } from "../requests/getHorses";
 import { HorseIdInterface } from "../../common/types";
 import { deleteHorse } from "../requests/deleteHorse";
 
-type InitialStateType = {
+type InitialHorsesStateType = {
   horses: HorseIdInterface[];
   compareHorses: HorseIdInterface[];
   isLoading: boolean;
@@ -11,7 +11,7 @@ type InitialStateType = {
   isError: boolean;
 };
 
-const initialState: InitialStateType = {
+const initialState: InitialHorsesStateType = {
   horses: [],
   compareHorses: [],
   isLoading: false,
@@ -39,19 +39,32 @@ const horsesSlice = createSlice({
       state.isSuccess = false;
       state.isError = false;
     });
-    builder.addCase(getHorses.rejected, (state) => {
-      state.isLoading = false;
-      state.isSuccess = false;
-      state.isError = true;
-    });
     builder.addCase(getHorses.fulfilled, (state, { payload }) => {
       state.isLoading = false;
       state.isSuccess = true;
       state.isError = false;
       state.horses = payload;
     });
+    builder.addCase(getHorses.rejected, (state) => {
+      state.isLoading = false;
+      state.isSuccess = false;
+      state.isError = true;
+    });
+    builder.addCase(deleteHorse.pending, (state) => {
+      state.isLoading = true;
+      state.isSuccess = false;
+      state.isError = false;
+    });
     builder.addCase(deleteHorse.fulfilled, (state, { payload }) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      state.isError = false;
       state.horses = payload;
+    });
+    builder.addCase(deleteHorse.rejected, (state) => {
+      state.isLoading = false;
+      state.isSuccess = false;
+      state.isError = true;
     });
   },
 });
