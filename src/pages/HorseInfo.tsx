@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styled from "@emotion/styled/macro";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { addHorseToCompare } from "../store/slices/horsesSlice";
 import {
   selectCompareHorses,
@@ -19,13 +19,14 @@ import {
 } from "../common/styles";
 import Button from "../components/Button";
 import Spinner from "../components/Spinner";
+import { useAppDispatch } from "../store/store";
 
 const Item = styled.div`
   padding: 10px 0;
 `;
 
 const HorseInfo = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const horse = useSelector(selectHorse);
   const isLoading = useSelector(selectIsHorseLoading);
@@ -35,9 +36,11 @@ const HorseInfo = () => {
   useEffect(() => {
     dispatch(getHorseById(id as string));
   }, [dispatch, id]);
+
   const editHorse = () => {
     navigate(`/edit/${horse.id}`);
   };
+
   if (Object.keys(horse).length === 0) return null;
 
   return (

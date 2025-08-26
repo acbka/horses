@@ -26,6 +26,7 @@ export const Section = styled.div`
     margin-top: 0px;
   }
 `;
+
 export const List = styled.div`
   display: flex;
   min-width: 100px;
@@ -33,6 +34,7 @@ export const List = styled.div`
   flex-direction: column;
   justify-content: flex-start;
 `;
+
 export const ButtonsSection = styled.div`
   width: 100%;
   display: flex;

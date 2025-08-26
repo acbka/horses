@@ -39,6 +39,7 @@ const HomePage = () => {
   const page = useSelector(selectPage);
   const isHorsesLoading = useSelector(selectIsHorsesLoading);
   const navigate = useNavigate();
+
   useEffect(() => {
     setPages(Math.ceil(horses.length / horsesPerPage));
   }, [dispatch, horses.length]);
@@ -109,4 +110,5 @@ const HomePage = () => {
     </Wrapper>
   );
 };
+
 export default HomePage;

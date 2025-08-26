@@ -38,6 +38,7 @@ const AddHorse = () => {
       dispatch(addHorse(horse))
         .then(() => dispatch(getHorses()))
         .then(() => navigate(-1));
+
       if (Math.ceil((horses.length + 1) / 5) > Math.ceil(horses.length / 5)) {
         dispatch(setPage(Math.ceil((horses.length + 1) / 5)));
       } else {
