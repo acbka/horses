@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent } from "react";
 import styled from "@emotion/styled/macro";
-import { horseBreeds } from "../common/horseBreeds";
+import { HorseBreeds } from "../common/types";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -26,15 +26,16 @@ type SelectPropsType = {
 };
 
 const Select = ({ name, handleChange }: SelectPropsType) => {
-  const [breed, setBreed] = useState(horseBreeds[0]);
-  const optionsList = horseBreeds.map((item, index) => (
+  const [breed, setBreed] = useState(Object.values(HorseBreeds)[0]);
+
+  const optionsList = Object.values(HorseBreeds).map((item, index) => (
     <option key={index} value={item}>
       {item}
     </option>
   ));
 
   const selectBreed = (e: ChangeEvent<HTMLSelectElement>) => {
-    setBreed(e.target.value);
+    setBreed(e.target.value as HorseBreeds);
     handleChange(e.target.value);
   };
 

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { HorseInterface, HorseIdInterface } from "../common/types";
-import { horseBreeds } from "../common/horseBreeds";
+import { HorseBreeds, HorseInterface, HorseIdInterface } from "../common/types";
 import { List } from "../common/styles";
 import Input from "./Input";
 import Select from "./Select";
@@ -19,7 +18,7 @@ const InputForm = ({
   const [horse, setHorse] = useState<HorseInterface | HorseIdInterface>(
     initialHorse || {
       name: "",
-      breed: horseBreeds[0],
+      breed: Object.values(HorseBreeds)[0],
       profile: {
         favouriteFood: "",
         physical: {
@@ -40,9 +39,7 @@ const InputForm = ({
       {!isEdit && (
         <Select
           name="Breed"
-          handleChange={(value) =>
-            setHorse({ ...horse, breed: value as string })
-          }
+          handleChange={(value) => setHorse({ ...horse, breed: value })}
         />
       )}
       <Input
