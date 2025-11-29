@@ -5,8 +5,6 @@ import store from "../store/store";
 import { BrowserRouter as Router } from "react-router-dom";
 import Horse from "../components/Horse";
 
-console.log("Store:", store);
-
 describe("HorseInfo", () => {
   test("renders with id", () => {
     render(

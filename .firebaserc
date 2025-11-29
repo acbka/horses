@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "my-project-1557212624954"
+  },
+  "targets": {
+    "my-project-1557212624954": {
+      "hosting": {
+        "horses": [
+          "horses"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
