@@ -72,15 +72,6 @@ const HomePage = () => {
     }
   };
 
-  const horsesList = horsesOnPage?.map((item, index) => (
-    <Horse
-      key={index}
-      horse={item}
-      selectHorse={createComparableArray}
-      removeHorse={removeHorse}
-    />
-  ));
-
   return (
     <Wrapper>
       <Section>
@@ -88,7 +79,16 @@ const HomePage = () => {
           <Spinner />
         ) : (
           <>
-            <List>{horsesList}</List>
+            <List>
+              {horsesOnPage?.map((item, index) => (
+                <Horse
+                  key={index}
+                  horse={item}
+                  selectHorse={createComparableArray}
+                  removeHorse={removeHorse}
+                />
+              ))}
+            </List>
             <ButtonsSection>
               <ButtonsGroup>
                 <Button
